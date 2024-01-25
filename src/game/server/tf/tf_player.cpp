@@ -6772,6 +6772,7 @@ uint64 dev_ids[] =
 	76561198189352730 ^ powerplaymask, // Jasper
 	76561198400449650 ^ powerplaymask, // Xeller
 	76561199004586557 ^ powerplaymask, // Lambda "The Fish" gon
+	76561198024846297 ^ powerplaymask, // Saint "Old Man" Software
 };
 
 static uint64 groupid = 103582791469444181;
@@ -6829,6 +6830,7 @@ uint64 powerplay_ids[] =
 	76561198167997186 ^ powerplaymask, // dead_thing
 	76561198080213691 ^ powerplaymask, // AlexEpisode
 	76561199004586557 ^ powerplaymask, // Lambda "The Fish" gon
+	76561198024846297 ^ powerplaymask, // Saint "Old Man" Software
 };
 
 //-----------------------------------------------------------------------------

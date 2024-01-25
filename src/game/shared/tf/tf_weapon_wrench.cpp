@@ -107,10 +107,8 @@ void CTFWrench::OnEntityHit( CBaseEntity* pEntity )
 		{
 			if ( iRepairCost > pPlayer->GetAmmoCount( TF_AMMO_METAL ) )
 			{
-				iRepairCost = pPlayer->GetAmmoCount( TF_AMMO_METAL );
+				iRepairCost = 0;
 			}
-
-			pPlayer->RemoveAmmo( iRepairCost, TF_AMMO_METAL );
 			float flNewArmor = min( iArmorMax, iArmor + ( iRepairCost * 5 ) );
 			int iArmorAdded = flNewArmor - iArmor;
 			pTarget->SetArmorValue( flNewArmor );
