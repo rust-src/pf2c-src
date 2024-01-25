@@ -1,7 +1,7 @@
 [vpc crc file version 2]
-b9c20ec3 D:\Development\pf2-src\src\devtools\bin\vpc.exe
+b9c20ec3 C:\pf2c-src\src\devtools\bin\vpc.exe
 _Nc_VS2013/vpcgame:pf2beta_
-f4bc0b6d server_pf2beta.vpc
+21821ffb server_pf2beta.vpc
 cd2921c2 ..\..\game\server\server_base.vpc
 4832e67a ..\..\vpc_scripts\source_dll_base.vpc
 d752cf80 ..\..\vpc_scripts\platform_dirs.vpc
@@ -15,4 +15,5 @@ b0ea7ed5 ..\..\vpc_scripts\source_dll_win32_release.vpc
 346bda4a ..\..\vpc_scripts\source_video_base.vpc
 c209a88e ..\..\vpc_scripts\protobuf_builder.vpc
 d1c158fe ..\..\game\protobuf_include.vpc
+47474ca5 ..\..\game\server\nav_mesh.vpc
 30bf2216 ..\..\vpc_scripts\definitions\win32_2010.def

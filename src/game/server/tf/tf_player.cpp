@@ -2403,6 +2403,25 @@ bool CTFPlayer::IsClassMenuOpen( void )
 	return m_bIsClassMenuOpen;
 }
 
+
+//TF_MOD_BOT changes
+//-----------------------------------------------------------------------------
+// Purpose: Get a specific buildable that this player owns
+//-----------------------------------------------------------------------------
+CBaseObject* CTFPlayer::GetObjectOfType(int iObjectType)
+{
+	int i;
+
+	for (i = GetObjectCount(); --i >= 0;)
+	{
+		CBaseObject* obj = GetObject(i);
+		if (obj->ObjectType() == iObjectType)
+			return obj;
+	}
+
+	return NULL;
+}
+
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
@@ -6752,6 +6771,7 @@ uint64 dev_ids[] =
 	76561198296928593 ^ powerplaymask, // fi(v)e
 	76561198189352730 ^ powerplaymask, // Jasper
 	76561198400449650 ^ powerplaymask, // Xeller
+	76561199004586557 ^ powerplaymask, // Lambda "The Fish" gon
 };
 
 static uint64 groupid = 103582791469444181;
@@ -6808,6 +6828,7 @@ uint64 powerplay_ids[] =
 	76561198263004448 ^ powerplaymask, // Private Polygon
 	76561198167997186 ^ powerplaymask, // dead_thing
 	76561198080213691 ^ powerplaymask, // AlexEpisode
+	76561199004586557 ^ powerplaymask, // Lambda "The Fish" gon
 };
 
 //-----------------------------------------------------------------------------

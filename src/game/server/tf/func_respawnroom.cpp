@@ -45,7 +45,7 @@ protected:
 LINK_ENTITY_TO_CLASS( func_respawnroom, CFuncRespawnRoom);
 
 BEGIN_DATADESC( CFuncRespawnRoom )
-	DEFINE_FUNCTION( RespawnRoomTouch ),
+	DEFINE_FUNCTION(CFuncRespawnRoomShim::Touch),
 	DEFINE_KEYFIELD( m_bAllowGrenades, FIELD_BOOLEAN, "allowGrenades"),
 	// inputs
 	DEFINE_INPUTFUNC( FIELD_VOID, "SetActive", InputSetActive ),
@@ -57,7 +57,8 @@ END_DATADESC()
 IMPLEMENT_SERVERCLASS_ST( CFuncRespawnRoom, DT_FuncRespawnRoom )
 END_SEND_TABLE()
 
-
+//TF_MOD_BOT changes
+IMPLEMENT_AUTO_LIST(IFuncRespawnRoomAutoList)
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------

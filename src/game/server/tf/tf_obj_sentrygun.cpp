@@ -563,6 +563,14 @@ bool CObjectSentrygun::OnWrenchHit( CTFPlayer *pPlayer )
 
 	return bDidWork;
 }
+//TF_MOD_BOT changes
+//-----------------------------------------------------------------------------
+// Purpose: 
+//-----------------------------------------------------------------------------
+float CObjectSentrygun::GetTimeSinceLastFired(void) const
+{
+	return m_fireTimer.GetElapsedTime();
+}
 
 //-----------------------------------------------------------------------------
 // Debug infos

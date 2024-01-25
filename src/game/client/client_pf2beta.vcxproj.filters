@@ -31,6 +31,9 @@
     <Filter Include="Source Files\IFM">
       <UniqueIdentifier>{5571F7DC-7863-A105-5250-28ED3BC3F948}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\NextBot">
+      <UniqueIdentifier>{D64D73F0-455F-F930-8D88-FB3DD840FA43}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\PF2">
       <UniqueIdentifier>{FA9F9B98-BB9F-7F3B-7128-8751772FC0EC}</UniqueIdentifier>
     </Filter>
@@ -1886,6 +1889,9 @@
     <ClInclude Include="..\..\game\shared\weapon_ifmbasecamera.h">
       <Filter>Source Files\IFM</Filter>
     </ClInclude>
+    <ClInclude Include="NextBot\c_NextBot.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
     <ClInclude Include="betatest_check.h">
       <Filter>Source Files\PF2</Filter>
     </ClInclude>
@@ -3414,6 +3420,9 @@
     </ClCompile>
     <ClCompile Include="..\..\game\shared\weapon_ifmsteadycam.cpp">
       <Filter>Source Files\IFM</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\c_NextBot.cpp">
+      <Filter>Source Files\NextBot</Filter>
     </ClCompile>
     <ClCompile Include="betatest_check.cpp">
       <Filter>Source Files\PF2</Filter>

@@ -3315,18 +3315,18 @@ void C_TFPlayer::SetHealer( C_TFPlayer *pHealer, float flChargeLevel )
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
-float C_TFPlayer::MedicGetChargeLevel( void )
+float C_TFPlayer::MedicGetChargeLevel(void)
 {
-	if( IsPlayerClass( TF_CLASS_MEDIC ) )
+	if (IsPlayerClass(TF_CLASS_MEDIC))
 	{
-		CTFWeaponBase *pWpn = ( CTFWeaponBase * )Weapon_OwnsThisID( TF_WEAPON_MEDIGUN );
+		CTFWeaponBase *pWpn = (CTFWeaponBase *)Weapon_OwnsThisID(TF_WEAPON_MEDIGUN);
 
-		if( pWpn == NULL )
+		if (pWpn == NULL)
 			return 0;
 
 		CWeaponMedigun *pWeapon = dynamic_cast <CWeaponMedigun*>(pWpn);
 
-		if( pWeapon )
+		if (pWeapon)
 			return pWeapon->GetChargeLevel();
 	}
 
@@ -3336,13 +3336,13 @@ float C_TFPlayer::MedicGetChargeLevel( void )
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
-CBaseEntity *C_TFPlayer::MedicGetHealTarget( void )
+CBaseEntity *C_TFPlayer::MedicGetHealTarget(void)
 {
-	if( IsPlayerClass( TF_CLASS_MEDIC ) )
+	if (IsPlayerClass(TF_CLASS_MEDIC))
 	{
 		CWeaponMedigun *pWeapon = dynamic_cast <CWeaponMedigun*>(GetActiveWeapon());
 
-		if( pWeapon )
+		if (pWeapon)
 			return pWeapon->GetHealTarget();
 	}
 

@@ -278,7 +278,11 @@ public:
 
 	bool CanHaveAmmo( CBaseCombatCharacter *pPlayer, int iAmmoIndex );
 
-	virtual const char *GetGameDescription( void ){ return "Pre-Fortress 2"; }
+	virtual const char *GetGameDescription( void ){ return "Pre-Fortress 2 Classic"; }
+
+	//TF_MOD_BOT changes
+	const CUtlVector<EHANDLE>& GetAmmoEnts(void) const { Assert(m_hAmmoEntities.Count()); return m_hAmmoEntities; }
+	const CUtlVector<EHANDLE>& GetHealthEnts(void) const { Assert(m_hHealthEntities.Count()); return m_hHealthEntities; }
 
 	// Sets up g_pPlayerResource.
 	virtual void CreateStandardEntities();
@@ -335,6 +339,10 @@ private:
 	int m_iCurrentRoundState;
 	int m_iCurrentMiniRoundMask;
 	float m_flTimerMayExpireAt;
+
+	//TF_MOD_BOT changes
+	CUtlVector<EHANDLE> m_hAmmoEntities;
+	CUtlVector<EHANDLE> m_hHealthEntities;
 
 #endif
 

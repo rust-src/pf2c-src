@@ -108,6 +108,11 @@ END_DATADESC();
 
 LINK_ENTITY_TO_CLASS( item_teamflag, CCaptureFlag );
 
+//TF_MOD_BOT changes
+#ifdef GAME_DLL
+IMPLEMENT_AUTO_LIST(ICaptureFlagAutoList);
+#endif
+
 //=============================================================================
 //
 // CTF Flag functions.

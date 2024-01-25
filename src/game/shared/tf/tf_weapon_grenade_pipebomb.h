@@ -38,8 +38,7 @@ public:
 	virtual bool		IsPillGrenade() { return true; }
 
 	void			SetChargeTime( float flChargeTime )				{ m_flChargeTime = flChargeTime; }
-
-	CNetworkVar( bool, m_bTouched );
+	CNetworkVar(bool, m_bTouched);
 	CNetworkVar( int, m_iType ); // TF_GL_MODE_REGULAR or TF_GL_MODE_REMOTE_DETONATE
 	float		m_flCreationTime;
 	float		m_flChargeTime;

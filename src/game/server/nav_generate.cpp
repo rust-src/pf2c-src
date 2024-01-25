@@ -3462,7 +3462,7 @@ void CNavMesh::BeginGeneration( bool incremental )
 	if (m_walkableSeeds.Count() == 0)
 	{
 		m_generationMode = GENERATE_NONE;
-		Msg( "No valid walkable seed positions.  Please find a location where players are able to walk, aim at the ground, and use nav_mark_walkable, afterwards attempt to regenerate the mesh \n" );
+		Msg( "No valid walkable seed positions.  Cannot generate Navigation Mesh.\n" );
 		return;
 	}
 

@@ -49,10 +49,16 @@ public:
 
 	virtual float		GetShakeAmplitude( void ) { return 10.0; }
 	virtual float		GetShakeRadius( void ) { return 300.0; }
+	bool				Touched(void) const { return m_bTouched; }
 
 	void				SetCritical( bool bCritical ) { m_bCritical = bCritical; }
 	virtual int			GetDamageType();
 	virtual bool		IsPillGrenade() { return false; }
+
+protected:
+
+	// Touch fix
+	CNetworkVar(bool, m_bTouched);
 
 private:
 

@@ -60,13 +60,18 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
-      <Command>if EXIST ..\..\..\game\pf2beta\bin\.\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\..\game\pf2beta\bin\.\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q &quot;$(TargetDir)&quot;$(TargetFileName)&#x0D;&#x0A;if exist &quot;..\..\devtools\bin\vpc.exe&quot; &quot;..\..\devtools\bin\vpc.exe&quot; -crc2 &quot;server_pf2beta.vcxproj&quot;&#x0D;&#x0A;if ERRORLEVEL 1 exit /b 1&#x0D;&#x0A;</Command>
+      <Command>if EXIST ..\..\..\game\pf2beta\bin\.\$(TargetFileName) for /f "delims=" %%A in ('attrib "..\..\..\game\pf2beta\bin\.\$(TargetFileName)"') do set valveTmpIsReadOnly="%%A"
+set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%
+if "%valveTmpIsReadOnlyLetter%"=="R" del /q "$(TargetDir)"$(TargetFileName)
+if exist "..\..\devtools\bin\vpc.exe" "..\..\devtools\bin\vpc.exe" -crc2 "server_pf2beta.vcxproj"
+if ERRORLEVEL 1 exit /b 1
+</Command>
     </PreBuildEvent>
     <ClCompile>
       <AdditionalOptions>/Zm200 /Gw /Zc:inline</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\common;..\..\public;..\..\public\tier0;..\..\public\tier1;..\..\game\server\generated_proto_pf2beta;..\..\thirdparty\protobuf-2.3.0\src;.\;..\..\game\shared;..\..\utils\common;..\..\game\shared\econ;..\..\game\server\NextBot;..\..\game\shared\hl2;.\tf;.\tf\vgui;..\..\game\shared\Multiplayer;..\..\game\shared\tf;..\..\game\shared\pf</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>VPC;RAD_TELEMETRY_DISABLED;_HAS_ITERATOR_DEBUGGING=0;WIN32;_WIN32;_DEBUG;DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_ALLOW_RUNTIME_LIBRARY_MISMATCH;_ALLOW_ITERATOR_DEBUG_LEVEL_MISMATCH;_ALLOW_MSC_VER_MISMATCH;%(PreprocessorDefinitions);COMPILER_MSVC32;COMPILER_MSVC32;COMPILER_MSVC;_DLL_EXT=.dll;DLLNAME=server;BINK_VIDEO;AVI_VIDEO;WMV_VIDEO;DEV_BUILD;FRAME_POINTER_OMISSION_DISABLED;GAME_DLL;VECTOR;VERSION_SAFE_STEAM_API_INTERFACES;PROTECTED_THINGS_ENABLE;sprintf=use_Q_snprintf_instead_of_sprintf;strncpy=use_Q_strncpy_instead;_snprintf=use_Q_snprintf_instead;fopen=dont_use_fopen;PF2;PF2_DLL;GLOWS_ENABLE;_EXTERNAL_DLL_EXT=.dll;VPCGAMECAPS=PF2BETA;PROJECTDIR=D:\Development\pf2-src\src\game\server;_DLL_EXT=.dll;VPCGAME=pf2beta;SOURCE1=1</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\common;..\..\public;..\..\public\tier0;..\..\public\tier1;..\..\game\server\generated_proto_pf2beta;..\..\thirdparty\protobuf-2.3.0\src;.\;..\..\game\shared;..\..\utils\common;..\..\game\shared\econ;..\..\game\server\NextBot;..\..\game\shared\hl2;.\tf;.\tf\bot;.\tf\vgui;..\..\game\shared\Multiplayer;..\..\game\shared\tf;..\..\game\shared\pf</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>VPC;RAD_TELEMETRY_DISABLED;_HAS_ITERATOR_DEBUGGING=0;WIN32;_WIN32;_DEBUG;DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_ALLOW_RUNTIME_LIBRARY_MISMATCH;_ALLOW_ITERATOR_DEBUG_LEVEL_MISMATCH;_ALLOW_MSC_VER_MISMATCH;%(PreprocessorDefinitions);COMPILER_MSVC32;COMPILER_MSVC32;COMPILER_MSVC;_DLL_EXT=.dll;DLLNAME=server;BINK_VIDEO;AVI_VIDEO;WMV_VIDEO;DEV_BUILD;FRAME_POINTER_OMISSION_DISABLED;GAME_DLL;VECTOR;VERSION_SAFE_STEAM_API_INTERFACES;PROTECTED_THINGS_ENABLE;sprintf=use_Q_snprintf_instead_of_sprintf;strncpy=use_Q_strncpy_instead;_snprintf=use_Q_snprintf_instead;fopen=dont_use_fopen;USE_NAV_MESH;PF2;PF2_DLL;GLOWS_ENABLE;NEXT_BOT;_EXTERNAL_DLL_EXT=.dll;VPCGAMECAPS=PF2BETA;PROJECTDIR=C:\pf2c-src\src\game\server;_DLL_EXT=.dll;SOURCE1=1;VPCGAME=pf2beta</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling>false</ExceptionHandling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -110,7 +115,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(IntDir)/$(TargetName).pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
-      <BaseAddress> </BaseAddress>
+      <BaseAddress>
+      </BaseAddress>
       <TargetMachine>MachineX86</TargetMachine>
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -128,14 +134,31 @@
     </Bscmake>
     <PostBuildEvent>
       <Message>Publishing to ..\..\..\game\pf2beta\bin\.</Message>
-      <Command>if not exist &quot;..\..\..\game\pf2beta\bin\.&quot; mkdir &quot;..\..\..\game\pf2beta\bin\.&quot;&#x0D;&#x0A;copy &quot;$(TargetDir)$(TargetFileName)&quot; &quot;..\..\..\game\pf2beta\bin\.\$(TargetFileName)&quot;&#x0D;&#x0A;if ERRORLEVEL 1 goto BuildEventFailed&#x0D;&#x0A;if exist &quot;$(TargetDir)$(TargetName).map&quot; copy &quot;$(TargetDir)$(TargetName).map&quot; ..\..\..\game\pf2beta\bin\.\$(TargetName).map&#x0D;&#x0A;copy &quot;$(TargetDir)$(TargetName).pdb&quot; ..\..\..\game\pf2beta\bin\.\$(TargetName).pdb&#x0D;&#x0A;if ERRORLEVEL 1 goto BuildEventFailed&#x0D;&#x0A;goto BuildEventOK&#x0D;&#x0A;:BuildEventFailed&#x0D;&#x0A;echo *** ERROR! PostBuildStep FAILED for $(ProjectName)! EXE or DLL is probably running. ***&#x0D;&#x0A;del /q &quot;$(TargetDir)$(TargetFileName)&quot;&#x0D;&#x0A;exit 1&#x0D;&#x0A;:BuildEventOK&#x0D;&#x0A;</Command>
+      <Command>if not exist "..\..\..\game\pf2beta\bin\." mkdir "..\..\..\game\pf2beta\bin\."
+copy "$(TargetDir)$(TargetFileName)" "..\..\..\game\pf2beta\bin\.\$(TargetFileName)"
+if ERRORLEVEL 1 goto BuildEventFailed
+if exist "$(TargetDir)$(TargetName).map" copy "$(TargetDir)$(TargetName).map" ..\..\..\game\pf2beta\bin\.\$(TargetName).map
+copy "$(TargetDir)$(TargetName).pdb" ..\..\..\game\pf2beta\bin\.\$(TargetName).pdb
+if ERRORLEVEL 1 goto BuildEventFailed
+goto BuildEventOK
+:BuildEventFailed
+echo *** ERROR! PostBuildStep FAILED for $(ProjectName)! EXE or DLL is probably running. ***
+del /q "$(TargetDir)$(TargetFileName)"
+exit 1
+:BuildEventOK
+</Command>
     </PostBuildEvent>
     <CustomBuildStep>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
-      <Command>if EXIST ..\..\..\game\pf2beta\bin\.\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\..\game\pf2beta\bin\.\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q &quot;$(TargetDir)&quot;$(TargetFileName)&#x0D;&#x0A;if exist &quot;..\..\devtools\bin\vpc.exe&quot; &quot;..\..\devtools\bin\vpc.exe&quot; -crc2 &quot;server_pf2beta.vcxproj&quot;&#x0D;&#x0A;if ERRORLEVEL 1 exit /b 1&#x0D;&#x0A;</Command>
+      <Command>if EXIST ..\..\..\game\pf2beta\bin\.\$(TargetFileName) for /f "delims=" %%A in ('attrib "..\..\..\game\pf2beta\bin\.\$(TargetFileName)"') do set valveTmpIsReadOnly="%%A"
+set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%
+if "%valveTmpIsReadOnlyLetter%"=="R" del /q "$(TargetDir)"$(TargetFileName)
+if exist "..\..\devtools\bin\vpc.exe" "..\..\devtools\bin\vpc.exe" -crc2 "server_pf2beta.vcxproj"
+if ERRORLEVEL 1 exit /b 1
+</Command>
     </PreBuildEvent>
     <ClCompile>
       <AdditionalOptions>/Zm200 /Zo /Gw /Zc:inline</AdditionalOptions>
@@ -143,8 +166,8 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>..\..\common;..\..\public;..\..\public\tier0;..\..\public\tier1;..\..\game\server\generated_proto_pf2beta;..\..\thirdparty\protobuf-2.3.0\src;.\;..\..\game\shared;..\..\utils\common;..\..\game\shared\econ;..\..\game\server\NextBot;..\..\game\shared\hl2;.\tf;.\tf\vgui;..\..\game\shared\Multiplayer;..\..\game\shared\tf;..\..\game\shared\pf</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>VPC;RAD_TELEMETRY_DISABLED;WIN32;_WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_ALLOW_RUNTIME_LIBRARY_MISMATCH;_ALLOW_ITERATOR_DEBUG_LEVEL_MISMATCH;_ALLOW_MSC_VER_MISMATCH;%(PreprocessorDefinitions);COMPILER_MSVC32;COMPILER_MSVC32;COMPILER_MSVC;_DLL_EXT=.dll;DLLNAME=server;BINK_VIDEO;AVI_VIDEO;WMV_VIDEO;DEV_BUILD;FRAME_POINTER_OMISSION_DISABLED;GAME_DLL;VECTOR;VERSION_SAFE_STEAM_API_INTERFACES;PROTECTED_THINGS_ENABLE;sprintf=use_Q_snprintf_instead_of_sprintf;strncpy=use_Q_strncpy_instead;_snprintf=use_Q_snprintf_instead;fopen=dont_use_fopen;PF2;PF2_DLL;GLOWS_ENABLE;_EXTERNAL_DLL_EXT=.dll;VPCGAMECAPS=PF2BETA;PROJECTDIR=D:\Development\pf2-src\src\game\server;_DLL_EXT=.dll;VPCGAME=pf2beta;SOURCE1=1</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\common;..\..\public;..\..\public\tier0;..\..\public\tier1;..\..\game\server\generated_proto_pf2beta;..\..\thirdparty\protobuf-2.3.0\src;.\;..\..\game\shared;..\..\utils\common;..\..\game\shared\econ;..\..\game\server\NextBot;..\..\game\shared\hl2;.\tf;.\tf\bot;.\tf\vgui;..\..\game\shared\Multiplayer;..\..\game\shared\tf;..\..\game\shared\pf</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>VPC;RAD_TELEMETRY_DISABLED;WIN32;_WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_ALLOW_RUNTIME_LIBRARY_MISMATCH;_ALLOW_ITERATOR_DEBUG_LEVEL_MISMATCH;_ALLOW_MSC_VER_MISMATCH;%(PreprocessorDefinitions);COMPILER_MSVC32;COMPILER_MSVC32;COMPILER_MSVC;_DLL_EXT=.dll;DLLNAME=server;BINK_VIDEO;AVI_VIDEO;WMV_VIDEO;DEV_BUILD;FRAME_POINTER_OMISSION_DISABLED;GAME_DLL;VECTOR;VERSION_SAFE_STEAM_API_INTERFACES;PROTECTED_THINGS_ENABLE;sprintf=use_Q_snprintf_instead_of_sprintf;strncpy=use_Q_strncpy_instead;_snprintf=use_Q_snprintf_instead;fopen=dont_use_fopen;USE_NAV_MESH;PF2;PF2_DLL;GLOWS_ENABLE;NEXT_BOT;_EXTERNAL_DLL_EXT=.dll;VPCGAMECAPS=PF2BETA;PROJECTDIR=C:\pf2c-src\src\game\server;_DLL_EXT=.dll;SOURCE1=1;VPCGAME=pf2beta</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -162,7 +185,7 @@
       <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
       <BrowseInformation>false</BrowseInformation>
       <WarningLevel>Level4</WarningLevel>
-      <TreatWarningAsError>true</TreatWarningAsError>
+      <TreatWarningAsError>false</TreatWarningAsError>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>CompileAsCpp</CompileAs>
       <UseFullPaths>true</UseFullPaths>
@@ -190,7 +213,8 @@
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>false</EnableCOMDATFolding>
-      <BaseAddress> </BaseAddress>
+      <BaseAddress>
+      </BaseAddress>
       <TargetMachine>MachineX86</TargetMachine>
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -208,7 +232,19 @@
     </Bscmake>
     <PostBuildEvent>
       <Message>Publishing to ..\..\..\game\pf2beta\bin\.</Message>
-      <Command>if not exist &quot;..\..\..\game\pf2beta\bin\.&quot; mkdir &quot;..\..\..\game\pf2beta\bin\.&quot;&#x0D;&#x0A;copy &quot;$(TargetDir)$(TargetFileName)&quot; &quot;..\..\..\game\pf2beta\bin\.\$(TargetFileName)&quot;&#x0D;&#x0A;if ERRORLEVEL 1 goto BuildEventFailed&#x0D;&#x0A;if exist &quot;$(TargetDir)$(TargetName).map&quot; copy &quot;$(TargetDir)$(TargetName).map&quot; ..\..\..\game\pf2beta\bin\.\$(TargetName).map&#x0D;&#x0A;copy &quot;$(TargetDir)$(TargetName).pdb&quot; ..\..\..\game\pf2beta\bin\.\$(TargetName).pdb&#x0D;&#x0A;if ERRORLEVEL 1 goto BuildEventFailed&#x0D;&#x0A;goto BuildEventOK&#x0D;&#x0A;:BuildEventFailed&#x0D;&#x0A;echo *** ERROR! PostBuildStep FAILED for $(ProjectName)! EXE or DLL is probably running. ***&#x0D;&#x0A;del /q &quot;$(TargetDir)$(TargetFileName)&quot;&#x0D;&#x0A;exit 1&#x0D;&#x0A;:BuildEventOK&#x0D;&#x0A;</Command>
+      <Command>if not exist "..\..\..\game\pf2beta\bin\." mkdir "..\..\..\game\pf2beta\bin\."
+copy "$(TargetDir)$(TargetFileName)" "..\..\..\game\pf2beta\bin\.\$(TargetFileName)"
+if ERRORLEVEL 1 goto BuildEventFailed
+if exist "$(TargetDir)$(TargetName).map" copy "$(TargetDir)$(TargetName).map" ..\..\..\game\pf2beta\bin\.\$(TargetName).map
+copy "$(TargetDir)$(TargetName).pdb" ..\..\..\game\pf2beta\bin\.\$(TargetName).pdb
+if ERRORLEVEL 1 goto BuildEventFailed
+goto BuildEventOK
+:BuildEventFailed
+echo *** ERROR! PostBuildStep FAILED for $(ProjectName)! EXE or DLL is probably running. ***
+del /q "$(TargetDir)$(TargetFileName)"
+exit 1
+:BuildEventOK
+</Command>
     </PostBuildEvent>
     <CustomBuildStep>
     </CustomBuildStep>
@@ -715,9 +751,94 @@
     <ClInclude Include="..\..\game\shared\weapon_parse.h" />
     <ClInclude Include="..\..\game\shared\weapon_proficiency.h" />
     <ClInclude Include="world.h" />
+    <ClInclude Include="tf\bot\tf_bot.h" />
+    <ClInclude Include="tf\bot\tf_bot_components.h" />
+    <ClInclude Include="tf\bot\tf_bot_manager.h" />
+    <ClInclude Include="tf\bot\tf_bot_squad.h" />
+    <ClInclude Include="tf\bot\tf_path_follower.h" />
+    <ClInclude Include="tf\bot\behavior\tf_bot_approach_object.h" />
+    <ClInclude Include="tf\bot\behavior\tf_bot_attack.h" />
+    <ClInclude Include="tf\bot\behavior\scenario\capture_the_flag\tf_bot_attack_flag_defenders.h" />
+    <ClInclude Include="tf\bot\behavior\tf_bot_behavior.h" />
+    <ClInclude Include="tf\bot\behavior\scenario\capture_point\tf_bot_capture_point.h" />
+    <ClInclude Include="tf\bot\behavior\tf_bot_dead.h" />
+    <ClInclude Include="tf\bot\behavior\scenario\capture_point\tf_bot_defend_point.h" />
+    <ClInclude Include="tf\bot\behavior\scenario\capture_point\tf_bot_defend_point_block_capture.h" />
+    <ClInclude Include="tf\bot\behavior\scenario\capture_the_flag\tf_bot_deliver_flag.h" />
+    <ClInclude Include="tf\bot\behavior\tf_bot_destroy_enemy_sentry.h" />
+    <ClInclude Include="tf\bot\behavior\engineer\tf_bot_engineer_build.h" />
+    <ClInclude Include="tf\bot\behavior\engineer\tf_bot_engineer_build_dispenser.h" />
+    <ClInclude Include="tf\bot\behavior\engineer\tf_bot_engineer_build_sentrygun.h" />
+    <ClInclude Include="tf\bot\behavior\engineer\tf_bot_engineer_build_teleport_entrance.h" />
+    <ClInclude Include="tf\bot\behavior\engineer\tf_bot_engineer_build_teleport_exit.h" />
+    <ClInclude Include="tf\bot\behavior\engineer\tf_bot_engineer_building.h" />
+    <ClInclude Include="tf\bot\behavior\engineer\tf_bot_engineer_move_to_build.h" />
+    <ClInclude Include="tf\bot\behavior\scenario\capture_the_flag\tf_bot_escort_flag_carrier.h" />
+    <ClInclude Include="tf\bot\behavior\scenario\capture_the_flag\tf_bot_fetch_flag.h" />
+    <ClInclude Include="tf\bot\behavior\tf_bot_get_ammo.h" />
+    <ClInclude Include="tf\bot\behavior\tf_bot_get_health.h" />
+    <ClInclude Include="tf\bot\behavior\medic\tf_bot_medic_heal.h" />
+    <ClInclude Include="tf\bot\behavior\medic\tf_bot_medic_retreat.h" />
+    <ClInclude Include="tf\bot\behavior\tf_bot_melee_attack.h" />
+    <ClInclude Include="tf\bot\behavior\tf_bot_move_to_vantage_point.h" />
+    <ClInclude Include="tf\bot\behavior\demoman\tf_bot_prepare_stickybomb_trap.h" />
+    <ClInclude Include="tf\bot\behavior\tf_bot_retreat_to_cover.h" />
+    <ClInclude Include="tf\bot\behavior\tf_bot_roam.h" />
+    <ClInclude Include="tf\bot\behavior\tf_bot_scenario_monitor.h" />
+    <ClInclude Include="tf\bot\behavior\tf_bot_seek_and_destroy.h" />
+    <ClInclude Include="tf\bot\behavior\sniper\tf_bot_sniper_attack.h" />
+    <ClInclude Include="tf\bot\behavior\sniper\tf_bot_sniper_lurk.h" />
+    <ClInclude Include="tf\bot\behavior\spy\tf_bot_spy_attack.h" />
+    <ClInclude Include="tf\bot\behavior\spy\tf_bot_spy_hide.h" />
+    <ClInclude Include="tf\bot\behavior\spy\tf_bot_spy_infiltrate.h" />
+    <ClInclude Include="tf\bot\behavior\spy\tf_bot_spy_lurk.h" />
+    <ClInclude Include="tf\bot\behavior\spy\tf_bot_spy_sap.h" />
+    <ClInclude Include="tf\bot\behavior\demoman\tf_bot_stickybomb_sentrygun.h" />
+    <ClInclude Include="tf\bot\behavior\tf_bot_tactical_monitor.h" />
+    <ClInclude Include="tf\bot\behavior\tf_bot_taunt.h" />
+    <ClInclude Include="tf\bot\behavior\tf_bot_use_item.h" />
+    <ClInclude Include="tf\bot\behavior\tf_bot_use_teleporter.h" />
+    <ClInclude Include="tf\bot\map_entities\tf_hint.h" />
+    <ClInclude Include="tf\bot\map_entities\tf_hint_entity.h" />
+    <ClInclude Include="tf\bot\map_entities\tf_hint_sentrygun.h" />
+    <ClInclude Include="tf\bot\map_entities\tf_hint_teleexit.h" />
     <ClInclude Include="..\..\game\shared\weapon_ifmbase.h" />
     <ClInclude Include="..\..\game\shared\weapon_ifmbasecamera.h" />
     <ClInclude Include="..\..\game\shared\weapon_ifmsteadycam.h" />
+    <ClInclude Include="nav.h" />
+    <ClInclude Include="nav_area.h" />
+    <ClInclude Include="nav_colors.h" />
+    <ClInclude Include="nav_entities.h" />
+    <ClInclude Include="nav_ladder.h" />
+    <ClInclude Include="nav_mesh.h" />
+    <ClInclude Include="nav_node.h" />
+    <ClInclude Include="nav_pathfind.h" />
+    <ClInclude Include="NextBot\NavMeshEntities\func_nav_prerequisite.h" />
+    <ClInclude Include="NextBot\NextBot.h" />
+    <ClInclude Include="NextBot\NextBotAttentionInterface.h" />
+    <ClInclude Include="NextBot\NextBotBehavior.h" />
+    <ClInclude Include="NextBot\NextBotBodyInterface.h" />
+    <ClInclude Include="NextBot\NextBotComponentInterface.h" />
+    <ClInclude Include="NextBot\NextBotContextualQueryInterface.h" />
+    <ClInclude Include="NextBot\NextBotDebug.h" />
+    <ClInclude Include="NextBot\NextBotEventResponderInterface.h" />
+    <ClInclude Include="NextBot\NextBotGroundLocomotion.h" />
+    <ClInclude Include="NextBot\NextBotHearingInterface.h" />
+    <ClInclude Include="NextBot\NextBotIntentionInterface.h" />
+    <ClInclude Include="NextBot\NextBotInterface.h" />
+    <ClInclude Include="NextBot\NextBotKnownEntity.h" />
+    <ClInclude Include="NextBot\NextBotLocomotionInterface.h" />
+    <ClInclude Include="NextBot\NextBotManager.h" />
+    <ClInclude Include="NextBot\NextBotUtil.h" />
+    <ClInclude Include="NextBot\NextBotVisionInterface.h" />
+    <ClInclude Include="NextBot\simple_bot.h" />
+    <ClInclude Include="NextBot\Path\NextBotChasePath.h" />
+    <ClInclude Include="NextBot\Path\NextBotPath.h" />
+    <ClInclude Include="NextBot\Path\NextBotPathFollow.h" />
+    <ClInclude Include="NextBot\Path\NextBotRetreatPath.h" />
+    <ClInclude Include="NextBot\Player\NextBotPlayer.h" />
+    <ClInclude Include="NextBot\Player\NextBotPlayerBody.h" />
+    <ClInclude Include="NextBot\Player\NextBotPlayerLocomotion.h" />
     <ClInclude Include="..\..\game\shared\pf\engine_patch.h" />
     <ClInclude Include="..\..\game\shared\pf\util\os_utils.h" />
     <ClInclude Include="..\..\game\shared\pf\pf_convar_setup.h" />
@@ -777,6 +898,8 @@
     <ClInclude Include="tf\tf_turret.h" />
     <ClInclude Include="..\..\game\shared\tf\tf_viewmodel.h" />
     <ClInclude Include="tf\tf_voteissues.h" />
+    <ClInclude Include="tf\nav_mesh\tf_nav_area.h" />
+    <ClInclude Include="tf\nav_mesh\tf_nav_mesh.h" />
     <ClInclude Include="..\..\game\shared\tf\tf_projectile_base.h" />
     <ClInclude Include="..\..\game\shared\tf\tf_projectile_nail.h" />
     <ClInclude Include="tf\tf_projectile_rocket.h" />
@@ -1284,9 +1407,90 @@
     <ClCompile Include="..\..\game\shared\weapon_proficiency.cpp" />
     <ClCompile Include="weight_button.cpp" />
     <ClCompile Include="world.cpp" />
+    <ClCompile Include="tf\bot\tf_bot.cpp" />
+    <ClCompile Include="tf\bot\tf_bot_components.cpp" />
+    <ClCompile Include="tf\bot\tf_bot_manager.cpp" />
+    <ClCompile Include="tf\bot\tf_bot_squad.cpp" />
+    <ClCompile Include="tf\bot\tf_path_follower.cpp" />
+    <ClCompile Include="tf\bot\behavior\tf_bot_approach_object.cpp" />
+    <ClCompile Include="tf\bot\behavior\tf_bot_attack.cpp" />
+    <ClCompile Include="tf\bot\behavior\scenario\capture_the_flag\tf_bot_attack_flag_defenders.cpp" />
+    <ClCompile Include="tf\bot\behavior\tf_bot_behavior.cpp" />
+    <ClCompile Include="tf\bot\behavior\scenario\capture_point\tf_bot_capture_point.cpp" />
+    <ClCompile Include="tf\bot\behavior\tf_bot_dead.cpp" />
+    <ClCompile Include="tf\bot\behavior\scenario\capture_point\tf_bot_defend_point.cpp" />
+    <ClCompile Include="tf\bot\behavior\scenario\capture_point\tf_bot_defend_point_block_capture.cpp" />
+    <ClCompile Include="tf\bot\behavior\scenario\capture_the_flag\tf_bot_deliver_flag.cpp" />
+    <ClCompile Include="tf\bot\behavior\tf_bot_destroy_enemy_sentry.cpp" />
+    <ClCompile Include="tf\bot\behavior\engineer\tf_bot_engineer_build.cpp" />
+    <ClCompile Include="tf\bot\behavior\engineer\tf_bot_engineer_build_dispenser.cpp" />
+    <ClCompile Include="tf\bot\behavior\engineer\tf_bot_engineer_build_sentrygun.cpp" />
+    <ClCompile Include="tf\bot\behavior\engineer\tf_bot_engineer_build_teleport_entrance.cpp" />
+    <ClCompile Include="tf\bot\behavior\engineer\tf_bot_engineer_build_teleport_exit.cpp" />
+    <ClCompile Include="tf\bot\behavior\engineer\tf_bot_engineer_building.cpp" />
+    <ClCompile Include="tf\bot\behavior\engineer\tf_bot_engineer_move_to_build.cpp" />
+    <ClCompile Include="tf\bot\behavior\scenario\capture_the_flag\tf_bot_escort_flag_carrier.cpp" />
+    <ClCompile Include="tf\bot\behavior\scenario\capture_the_flag\tf_bot_fetch_flag.cpp" />
+    <ClCompile Include="tf\bot\behavior\tf_bot_get_ammo.cpp" />
+    <ClCompile Include="tf\bot\behavior\tf_bot_get_health.cpp" />
+    <ClCompile Include="tf\bot\behavior\medic\tf_bot_medic_heal.cpp" />
+    <ClCompile Include="tf\bot\behavior\medic\tf_bot_medic_retreat.cpp" />
+    <ClCompile Include="tf\bot\behavior\tf_bot_melee_attack.cpp" />
+    <ClCompile Include="tf\bot\behavior\tf_bot_move_to_vantage_point.cpp" />
+    <ClCompile Include="tf\bot\behavior\demoman\tf_bot_prepare_stickybomb_trap.cpp" />
+    <ClCompile Include="tf\bot\behavior\tf_bot_retreat_to_cover.cpp" />
+    <ClCompile Include="tf\bot\behavior\tf_bot_roam.cpp" />
+    <ClCompile Include="tf\bot\behavior\tf_bot_scenario_monitor.cpp" />
+    <ClCompile Include="tf\bot\behavior\tf_bot_seek_and_destroy.cpp" />
+    <ClCompile Include="tf\bot\behavior\sniper\tf_bot_sniper_attack.cpp" />
+    <ClCompile Include="tf\bot\behavior\sniper\tf_bot_sniper_lurk.cpp" />
+    <ClCompile Include="tf\bot\behavior\spy\tf_bot_spy_attack.cpp" />
+    <ClCompile Include="tf\bot\behavior\spy\tf_bot_spy_hide.cpp" />
+    <ClCompile Include="tf\bot\behavior\spy\tf_bot_spy_infiltrate.cpp" />
+    <ClCompile Include="tf\bot\behavior\spy\tf_bot_spy_lurk.cpp" />
+    <ClCompile Include="tf\bot\behavior\spy\tf_bot_spy_sap.cpp" />
+    <ClCompile Include="tf\bot\behavior\demoman\tf_bot_stickybomb_sentrygun.cpp" />
+    <ClCompile Include="tf\bot\behavior\tf_bot_tactical_monitor.cpp" />
+    <ClCompile Include="tf\bot\behavior\tf_bot_taunt.cpp" />
+    <ClCompile Include="tf\bot\behavior\tf_bot_use_item.cpp" />
+    <ClCompile Include="tf\bot\behavior\tf_bot_use_teleporter.cpp" />
+    <ClCompile Include="tf\bot\map_entities\tf_hint.cpp" />
+    <ClCompile Include="tf\bot\map_entities\tf_hint_entity.cpp" />
+    <ClCompile Include="tf\bot\map_entities\tf_hint_sentrygun.cpp" />
+    <ClCompile Include="tf\bot\map_entities\tf_hint_teleexit.cpp" />
     <ClCompile Include="..\..\game\shared\weapon_ifmbase.cpp" />
     <ClCompile Include="..\..\game\shared\weapon_ifmbasecamera.cpp" />
     <ClCompile Include="..\..\game\shared\weapon_ifmsteadycam.cpp" />
+    <ClCompile Include="nav_area.cpp" />
+    <ClCompile Include="nav_colors.cpp" />
+    <ClCompile Include="nav_edit.cpp" />
+    <ClCompile Include="nav_entities.cpp" />
+    <ClCompile Include="nav_file.cpp" />
+    <ClCompile Include="nav_generate.cpp" />
+    <ClCompile Include="nav_ladder.cpp" />
+    <ClCompile Include="nav_merge.cpp" />
+    <ClCompile Include="nav_mesh.cpp" />
+    <ClCompile Include="nav_mesh_factory.cpp" />
+    <ClCompile Include="nav_node.cpp" />
+    <ClCompile Include="nav_simplify.cpp" />
+    <ClCompile Include="NextBot\NavMeshEntities\func_nav_prerequisite.cpp" />
+    <ClCompile Include="NextBot\NextBot.cpp" />
+    <ClCompile Include="NextBot\NextBotAttentionInterface.cpp" />
+    <ClCompile Include="NextBot\NextBotBodyInterface.cpp" />
+    <ClCompile Include="NextBot\NextBotComponentInterface.cpp" />
+    <ClCompile Include="NextBot\NextBotGroundLocomotion.cpp" />
+    <ClCompile Include="NextBot\NextBotIntentionInterface.cpp" />
+    <ClCompile Include="NextBot\NextBotInterface.cpp" />
+    <ClCompile Include="NextBot\NextBotLocomotionInterface.cpp" />
+    <ClCompile Include="NextBot\NextBotManager.cpp" />
+    <ClCompile Include="NextBot\NextBotVisionInterface.cpp" />
+    <ClCompile Include="NextBot\simple_bot.cpp" />
+    <ClCompile Include="NextBot\Path\NextBotChasePath.cpp" />
+    <ClCompile Include="NextBot\Path\NextBotPath.cpp" />
+    <ClCompile Include="NextBot\Path\NextBotPathFollow.cpp" />
+    <ClCompile Include="NextBot\Player\NextBotPlayer.cpp" />
+    <ClCompile Include="NextBot\Player\NextBotPlayerBody.cpp" />
+    <ClCompile Include="NextBot\Player\NextBotPlayerLocomotion.cpp" />
     <ClCompile Include="..\..\game\shared\pf\engine_patch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
@@ -1415,6 +1619,8 @@
     <ClCompile Include="..\..\game\shared\tf\tf_usermessages.cpp" />
     <ClCompile Include="..\..\game\shared\tf\tf_viewmodel.cpp" />
     <ClCompile Include="tf\tf_voteissues.cpp" />
+    <ClCompile Include="tf\nav_mesh\tf_nav_area.cpp" />
+    <ClCompile Include="tf\nav_mesh\tf_nav_mesh.cpp" />
     <ClCompile Include="..\..\game\shared\tf\tf_projectile_base.cpp" />
     <ClCompile Include="..\..\game\shared\tf\tf_projectile_nail.cpp" />
     <ClCompile Include="tf\tf_projectile_rocket.cpp" />
@@ -1474,23 +1680,28 @@
   <ItemGroup>
     <CustomBuild Include="..\..\public\tier0\pointeroverride.asm">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Compiling pointeroverride.asm</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">&quot;$(VCInstallDir)bin\ml.exe&quot; /safeseh /c /Cp /Zi /Fo&quot;$(IntDir)\%(Filename).obj&quot; &quot;%(FullPath)&quot;</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(VCInstallDir)bin\ml.exe" /safeseh /c /Cp /Zi /Fo"$(IntDir)\%(Filename).obj" "%(FullPath)"</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)\%(Filename).obj</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Compiling pointeroverride.asm</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">&quot;$(VCInstallDir)bin\ml.exe&quot; /safeseh /c /Cp /Zi /Fo&quot;$(IntDir)\%(Filename).obj&quot; &quot;%(FullPath)&quot;</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(VCInstallDir)bin\ml.exe" /safeseh /c /Cp /Zi /Fo"$(IntDir)\%(Filename).obj" "%(FullPath)"</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)\%(Filename).obj</Outputs>
     </CustomBuild>
     <CustomBuild Include="server_pf2beta.vpc">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Running VPC CRC Check - server_pf2beta.vpc</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if exist &quot;..\..\devtools\bin\vpc.exe&quot; &quot;..\..\devtools\bin\vpc.exe&quot; -crc2 &quot;server_pf2beta.vcxproj&quot;&#x0D;&#x0A;if ERRORLEVEL 1 exit /b 1&#x0D;&#x0A;echo crc_complete &gt; D:\Development\pf2-src\src\game\server\server_pf2beta.vpc.sentinel</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Development\pf2-src\src\game\server\server_pf2beta.vpc.sentinel</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">if exist "..\..\devtools\bin\vpc.exe" "..\..\devtools\bin\vpc.exe" -crc2 "server_pf2beta.vcxproj"
+if ERRORLEVEL 1 exit /b 1
+echo crc_complete &gt; C:\pf2c-src\src\game\server\server_pf2beta.vpc.sentinel</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\pf2c-src\src\game\server\server_pf2beta.vpc.sentinel</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Running VPC CRC Check - server_pf2beta.vpc</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if exist &quot;..\..\devtools\bin\vpc.exe&quot; &quot;..\..\devtools\bin\vpc.exe&quot; -crc2 &quot;server_pf2beta.vcxproj&quot;&#x0D;&#x0A;if ERRORLEVEL 1 exit /b 1&#x0D;&#x0A;echo crc_complete &gt; D:\Development\pf2-src\src\game\server\server_pf2beta.vpc.sentinel</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\Development\pf2-src\src\game\server\server_pf2beta.vpc.sentinel</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">if exist "..\..\devtools\bin\vpc.exe" "..\..\devtools\bin\vpc.exe" -crc2 "server_pf2beta.vcxproj"
+if ERRORLEVEL 1 exit /b 1
+echo crc_complete &gt; C:\pf2c-src\src\game\server\server_pf2beta.vpc.sentinel</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\pf2c-src\src\game\server\server_pf2beta.vpc.sentinel</Outputs>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\vpc_scripts\loadaddress.vpc" />
+    <None Include="..\..\game\server\nav_mesh.vpc" />
     <None Include="..\..\vpc_scripts\platform_dirs.vpc" />
     <None Include="..\..\vpc_scripts\protobuf_builder.vpc" />
     <None Include="..\..\game\protobuf_include.vpc" />

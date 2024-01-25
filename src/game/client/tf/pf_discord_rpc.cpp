@@ -33,7 +33,7 @@
 
 ConVar cl_richpresence_printmsg("cl_richpresence_printmsg", "0", FCVAR_ARCHIVE, "");
 
-#define DISCORD_APP_ID	"658004706337226791"
+#define DISCORD_APP_ID	"1199980360537223178"
 
 // update once every 10 seconds. discord has an internal rate limiter of 15 seconds as well
 #define DISCORD_UPDATE_RATE 10.0f
@@ -47,29 +47,29 @@ ConVar cl_richpresence_printmsg("cl_richpresence_printmsg", "0", FCVAR_ARCHIVE, 
 const char* g_aClassImageRED[] =
 {
 	"undefined",
-	"red_scout",
-	"red_sniper",
-	"red_soldier",
-	"red_demoman",
-	"red_medic",
-	"red_heavy",
-	"red_pyro",
-	"red_spy",
-	"red_engineer"
+	"scout",
+	"sniper",
+	"soldier",
+	"demoman",
+	"medic",
+	"heavy",
+	"pyro",
+	"spy",
+	"engineer"
 };
 
 const char* g_aClassImageBLU[] =
 {
 	"undefined",
-	"blu_scout",
-	"blu_sniper",
-	"blu_soldier",
-	"blu_demoman",
-	"blu_medic",
-	"blu_heavy",
-	"blu_pyro",
-	"blu_spy",
-	"blu_engineer"
+	"scout",
+	"sniper",
+	"soldier",
+	"demoman",
+	"medic",
+	"heavy",
+	"pyro",
+	"spy",
+	"engineer"
 };
 
 const char* g_aClassNameLocalized[] =

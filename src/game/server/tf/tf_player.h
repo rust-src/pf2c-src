@@ -406,11 +406,20 @@ public:
 	CTFWeaponBase		*Weapon_OwnsThisID( int iWeaponID );
 	CTFWeaponBase		*Weapon_GetWeaponByType( int iType );
 
+	//TF_MOD_BOT changes
+	IntervalTimer m_lastCalledMedic;
+	CBaseObject* GetObjectOfType(int iObjectType);
+	void OnSapperPlaced(CBaseEntity* sappedObject);
+	bool IsPlacingSapper(void) const;
+	// Client commands.
+	void				HandleCommand_JoinTeam(const char* pTeamName);
+	void				HandleCommand_JoinClass(const char* pClassName);
+	void				HandleCommand_JoinTeam_NoMenus(const char* pTeamName);
+	int					GetAutoTeam(void);
+
 	IMPLEMENT_NETWORK_VAR_FOR_DERIVED( m_ArmorValue );
 
 private:
-
-	int					GetAutoTeam( void );
 
 	// Creation/Destruction.
 	void				InitClass( void );
@@ -428,10 +437,11 @@ private:
 	EHANDLE				m_hTauntScene;
 	bool				m_bInitTaunt;
 
-	// Client commands.
-	void				HandleCommand_JoinTeam( const char *pTeamName );
-	void				HandleCommand_JoinClass( const char *pClassName );
-	void				HandleCommand_JoinTeam_NoMenus( const char *pTeamName );
+
+	//TF_MOD_BOT changes
+	// Sapper events
+	bool				m_bSapping;
+	CountdownTimer		m_sapperTimer;
 
 	// Bots.
 	friend void			Bot_Think( CTFPlayer *pBot );
@@ -565,6 +575,16 @@ public:
 	float				m_flPowerPlayTime;
 	bool				m_bIsDeveloper;
 };
+
+//TF_MOD_BOT changes
+inline void CTFPlayer::OnSapperPlaced(CBaseEntity* sappedObject)
+{
+	m_sapperTimer.Start(3.0f);
+}
+inline bool CTFPlayer::IsPlacingSapper(void) const
+{
+	return !m_sapperTimer.IsElapsed();
+}
 
 //-----------------------------------------------------------------------------
 // Purpose: Utility function to convert an entity into a tf player.

@@ -14,12 +14,25 @@
 
 class CFuncRespawnRoomVisualizer;
 
+//TF_MOD_BOT changes
+//-----------------------------------------------------------------------------
+// Purpose: This class is to get around the fact that DEFINE_FUNCTION doesn't like multiple inheritance
+//-----------------------------------------------------------------------------
+class CFuncRespawnRoomShim : public CBaseTrigger
+{
+	virtual void RespawnRoomTouch(CBaseEntity* pOther) = 0;
+
+public:
+	void Touch(CBaseEntity* pOther) { return RespawnRoomTouch(pOther); }
+};
+
 //-----------------------------------------------------------------------------
 // Purpose: Defines an area considered inside a respawn room
 //-----------------------------------------------------------------------------
-class CFuncRespawnRoom : public CBaseTrigger
+DECLARE_AUTO_LIST(IFuncRespawnRoomAutoList)
+class CFuncRespawnRoom : public CFuncRespawnRoomShim, public IFuncRespawnRoomAutoList
 {
-	DECLARE_CLASS( CFuncRespawnRoom, CBaseTrigger );
+	DECLARE_CLASS(CFuncRespawnRoom, CFuncRespawnRoomShim);
 
 public:
 
@@ -28,26 +41,26 @@ public:
 	DECLARE_DATADESC();
 	DECLARE_SERVERCLASS();
 
-	virtual void Spawn( void );
-	virtual void Activate( void );
-	virtual void ChangeTeam( int iTeamNum );
+	virtual void Spawn(void);
+	virtual void Activate(void);
+	virtual void ChangeTeam(int iTeamNum);
 
-	void	RespawnRoomTouch( CBaseEntity *pOther );
+	void	RespawnRoomTouch(CBaseEntity *pOther);
 
 	// Inputs
-	void	InputSetActive( inputdata_t &inputdata );
-	void	InputSetInactive( inputdata_t &inputdata );
-	void	InputToggleActive( inputdata_t &inputdata );
-	void	InputRoundActivate( inputdata_t &inputdata );
+	void	InputSetActive(inputdata_t &inputdata);
+	void	InputSetInactive(inputdata_t &inputdata);
+	void	InputToggleActive(inputdata_t &inputdata);
+	void	InputRoundActivate(inputdata_t &inputdata);
 
-	void	SetActive( bool bActive );
+	void	SetActive(bool bActive);
 	bool	GetActive() const;
 	bool	AllowGrenades() const;
 
-	bool	PointIsWithin( const Vector &vecPoint );
+	bool	PointIsWithin(const Vector &vecPoint);
 
-	void	AddVisualizer( CFuncRespawnRoomVisualizer *pViz );
-	
+	void	AddVisualizer(CFuncRespawnRoomVisualizer *pViz);
+
 private:
 	bool	m_bAllowGrenades;
 	bool	m_bActive;

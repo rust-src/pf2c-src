@@ -58,6 +58,7 @@ PRECACHE_REGISTER( tf_weaponbase_grenade_proj );
 
 BEGIN_NETWORK_TABLE( CTFWeaponBaseGrenadeProj, DT_TFWeaponBaseGrenadeProj )
 #ifdef CLIENT_DLL
+	RecvPropInt(RECVINFO(m_bTouched)),
 	RecvPropVector( RECVINFO( m_vInitialVelocity ) ),
 	RecvPropBool( RECVINFO( m_bCritical ) ),
 	RecvPropBool( RECVINFO( m_bGrenade ) ),
@@ -66,6 +67,7 @@ BEGIN_NETWORK_TABLE( CTFWeaponBaseGrenadeProj, DT_TFWeaponBaseGrenadeProj )
 	RecvPropQAngles( RECVINFO_NAME( m_angNetworkAngles, m_angRotation ) ),
 
 #else
+	SendPropInt( SENDINFO (m_bTouched)),
 	SendPropVector( SENDINFO( m_vInitialVelocity ), 20 /*nbits*/, 0 /*flags*/, -3000 /*low value*/, 3000 /*high value*/	),
 	SendPropBool( SENDINFO( m_bCritical ) ),
 	SendPropBool( SENDINFO( m_bGrenade ) ),

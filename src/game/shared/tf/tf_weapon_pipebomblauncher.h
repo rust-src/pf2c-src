@@ -68,6 +68,11 @@ public:
 	void AddPipeBomb( CTFGrenadePipebombProjectile *pBomb );
 	void			DeathNotice( CBaseEntity *pVictim );
 
+	// List of active pipebombs
+	typedef CHandle<CTFGrenadePipebombProjectile>	PipebombHandle;
+	CUtlVector<PipebombHandle>		m_Pipebombs;
+
+
 
 
 #ifdef GAME_DLL
@@ -84,11 +89,7 @@ private:
 #ifdef CLIENT_DLL
 	int				m_iPipebombCount;
 #endif
-
-	// List of active pipebombs
-	typedef CHandle<CTFGrenadePipebombProjectile>	PipebombHandle;
-	CUtlVector<PipebombHandle>		m_Pipebombs;
-
+		
 	float	m_flChargeBeginTime;
 	float	m_flLastDenySoundTime;
 

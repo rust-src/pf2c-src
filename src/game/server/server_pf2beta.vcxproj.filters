@@ -13,8 +13,29 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{BA03E055-4FA2-FCE3-8A1C-D348547D379C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Bots">
+      <UniqueIdentifier>{32D7DE03-7DBA-16C0-C905-06C203A3305A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Bots\Behavior">
+      <UniqueIdentifier>{A05E7618-7436-8B32-115C-1BA22BDF9E98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Bots\Map Entities">
+      <UniqueIdentifier>{890014D7-7CDA-63EC-A1FC-9FACC2E125EF}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\IFM">
       <UniqueIdentifier>{5571F7DC-7863-A105-5250-28ED3BC3F948}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Navigation Mesh">
+      <UniqueIdentifier>{B09D60FE-50B0-FE99-73C2-303E809808E2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\NextBot">
+      <UniqueIdentifier>{D64D73F0-455F-F930-8D88-FB3DD840FA43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\NextBot\Path">
+      <UniqueIdentifier>{C1CD86D6-392F-9EAD-87CD-2EBCF8B04CE6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\NextBot\Player">
+      <UniqueIdentifier>{461F9851-0AFF-FDC5-277E-577F9AE99B92}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\PF2">
       <UniqueIdentifier>{FA9F9B98-BB9F-7F3B-7128-8751772FC0EC}</UniqueIdentifier>
@@ -27,6 +48,9 @@
     </Filter>
     <Filter Include="Source Files\TF">
       <UniqueIdentifier>{58C8951E-966E-882B-AD44-F32C8E51717D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TF\Nav Mesh">
+      <UniqueIdentifier>{3A674DB3-BFBA-1CB8-82C6-A4ABF14B635F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\TF\Weapon">
       <UniqueIdentifier>{0129E4C8-A75E-AB66-5A70-08D7311C04BB}</UniqueIdentifier>
@@ -1547,6 +1571,159 @@
     <ClInclude Include="world.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="tf\bot\tf_bot.h">
+      <Filter>Source Files\Bots</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\tf_bot_components.h">
+      <Filter>Source Files\Bots</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\tf_bot_manager.h">
+      <Filter>Source Files\Bots</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\tf_bot_squad.h">
+      <Filter>Source Files\Bots</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\tf_path_follower.h">
+      <Filter>Source Files\Bots</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\tf_bot_approach_object.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\tf_bot_attack.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\scenario\capture_the_flag\tf_bot_attack_flag_defenders.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\tf_bot_behavior.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\scenario\capture_point\tf_bot_capture_point.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\tf_bot_dead.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\scenario\capture_point\tf_bot_defend_point.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\scenario\capture_point\tf_bot_defend_point_block_capture.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\scenario\capture_the_flag\tf_bot_deliver_flag.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\tf_bot_destroy_enemy_sentry.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\engineer\tf_bot_engineer_build.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\engineer\tf_bot_engineer_build_dispenser.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\engineer\tf_bot_engineer_build_sentrygun.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\engineer\tf_bot_engineer_build_teleport_entrance.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\engineer\tf_bot_engineer_build_teleport_exit.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\engineer\tf_bot_engineer_building.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\engineer\tf_bot_engineer_move_to_build.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\scenario\capture_the_flag\tf_bot_escort_flag_carrier.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\scenario\capture_the_flag\tf_bot_fetch_flag.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\tf_bot_get_ammo.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\tf_bot_get_health.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\medic\tf_bot_medic_heal.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\medic\tf_bot_medic_retreat.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\tf_bot_melee_attack.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\tf_bot_move_to_vantage_point.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\demoman\tf_bot_prepare_stickybomb_trap.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\tf_bot_retreat_to_cover.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\tf_bot_roam.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\tf_bot_scenario_monitor.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\tf_bot_seek_and_destroy.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\sniper\tf_bot_sniper_attack.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\sniper\tf_bot_sniper_lurk.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\spy\tf_bot_spy_attack.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\spy\tf_bot_spy_hide.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\spy\tf_bot_spy_infiltrate.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\spy\tf_bot_spy_lurk.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\spy\tf_bot_spy_sap.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\demoman\tf_bot_stickybomb_sentrygun.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\tf_bot_tactical_monitor.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\tf_bot_taunt.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\tf_bot_use_item.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\behavior\tf_bot_use_teleporter.h">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\map_entities\tf_hint.h">
+      <Filter>Source Files\Bots\Map Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\map_entities\tf_hint_entity.h">
+      <Filter>Source Files\Bots\Map Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\map_entities\tf_hint_sentrygun.h">
+      <Filter>Source Files\Bots\Map Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\bot\map_entities\tf_hint_teleexit.h">
+      <Filter>Source Files\Bots\Map Entities</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\game\shared\weapon_ifmbase.h">
       <Filter>Source Files\IFM</Filter>
     </ClInclude>
@@ -1555,6 +1732,108 @@
     </ClInclude>
     <ClInclude Include="..\..\game\shared\weapon_ifmsteadycam.h">
       <Filter>Source Files\IFM</Filter>
+    </ClInclude>
+    <ClInclude Include="nav.h">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="nav_area.h">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="nav_colors.h">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="nav_entities.h">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="nav_ladder.h">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="nav_mesh.h">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="nav_node.h">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="nav_pathfind.h">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\NavMeshEntities\func_nav_prerequisite.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\NextBot.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\NextBotAttentionInterface.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\NextBotBehavior.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\NextBotBodyInterface.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\NextBotComponentInterface.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\NextBotContextualQueryInterface.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\NextBotDebug.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\NextBotEventResponderInterface.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\NextBotGroundLocomotion.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\NextBotHearingInterface.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\NextBotIntentionInterface.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\NextBotInterface.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\NextBotKnownEntity.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\NextBotLocomotionInterface.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\NextBotManager.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\NextBotUtil.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\NextBotVisionInterface.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\simple_bot.h">
+      <Filter>Source Files\NextBot</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\Path\NextBotChasePath.h">
+      <Filter>Source Files\NextBot\Path</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\Path\NextBotPath.h">
+      <Filter>Source Files\NextBot\Path</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\Path\NextBotPathFollow.h">
+      <Filter>Source Files\NextBot\Path</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\Path\NextBotRetreatPath.h">
+      <Filter>Source Files\NextBot\Path</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\Player\NextBotPlayer.h">
+      <Filter>Source Files\NextBot\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\Player\NextBotPlayerBody.h">
+      <Filter>Source Files\NextBot\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="NextBot\Player\NextBotPlayerLocomotion.h">
+      <Filter>Source Files\NextBot\Player</Filter>
     </ClInclude>
     <ClInclude Include="..\..\game\shared\pf\engine_patch.h">
       <Filter>Source Files\PF2</Filter>
@@ -1732,6 +2011,12 @@
     </ClInclude>
     <ClInclude Include="tf\tf_voteissues.h">
       <Filter>Source Files\TF</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\nav_mesh\tf_nav_area.h">
+      <Filter>Source Files\TF\Nav Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="tf\nav_mesh\tf_nav_mesh.h">
+      <Filter>Source Files\TF\Nav Mesh</Filter>
     </ClInclude>
     <ClInclude Include="..\..\game\shared\tf\tf_projectile_base.h">
       <Filter>Source Files\TF\Weapon\Bases</Filter>
@@ -2998,6 +3283,159 @@
     <ClCompile Include="world.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tf\bot\tf_bot.cpp">
+      <Filter>Source Files\Bots</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\tf_bot_components.cpp">
+      <Filter>Source Files\Bots</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\tf_bot_manager.cpp">
+      <Filter>Source Files\Bots</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\tf_bot_squad.cpp">
+      <Filter>Source Files\Bots</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\tf_path_follower.cpp">
+      <Filter>Source Files\Bots</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\tf_bot_approach_object.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\tf_bot_attack.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\scenario\capture_the_flag\tf_bot_attack_flag_defenders.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\tf_bot_behavior.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\scenario\capture_point\tf_bot_capture_point.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\tf_bot_dead.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\scenario\capture_point\tf_bot_defend_point.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\scenario\capture_point\tf_bot_defend_point_block_capture.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\scenario\capture_the_flag\tf_bot_deliver_flag.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\tf_bot_destroy_enemy_sentry.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\engineer\tf_bot_engineer_build.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\engineer\tf_bot_engineer_build_dispenser.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\engineer\tf_bot_engineer_build_sentrygun.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\engineer\tf_bot_engineer_build_teleport_entrance.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\engineer\tf_bot_engineer_build_teleport_exit.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\engineer\tf_bot_engineer_building.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\engineer\tf_bot_engineer_move_to_build.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\scenario\capture_the_flag\tf_bot_escort_flag_carrier.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\scenario\capture_the_flag\tf_bot_fetch_flag.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\tf_bot_get_ammo.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\tf_bot_get_health.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\medic\tf_bot_medic_heal.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\medic\tf_bot_medic_retreat.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\tf_bot_melee_attack.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\tf_bot_move_to_vantage_point.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\demoman\tf_bot_prepare_stickybomb_trap.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\tf_bot_retreat_to_cover.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\tf_bot_roam.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\tf_bot_scenario_monitor.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\tf_bot_seek_and_destroy.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\sniper\tf_bot_sniper_attack.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\sniper\tf_bot_sniper_lurk.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\spy\tf_bot_spy_attack.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\spy\tf_bot_spy_hide.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\spy\tf_bot_spy_infiltrate.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\spy\tf_bot_spy_lurk.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\spy\tf_bot_spy_sap.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\demoman\tf_bot_stickybomb_sentrygun.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\tf_bot_tactical_monitor.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\tf_bot_taunt.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\tf_bot_use_item.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\behavior\tf_bot_use_teleporter.cpp">
+      <Filter>Source Files\Bots\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\map_entities\tf_hint.cpp">
+      <Filter>Source Files\Bots\Map Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\map_entities\tf_hint_entity.cpp">
+      <Filter>Source Files\Bots\Map Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\map_entities\tf_hint_sentrygun.cpp">
+      <Filter>Source Files\Bots\Map Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\bot\map_entities\tf_hint_teleexit.cpp">
+      <Filter>Source Files\Bots\Map Entities</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\game\shared\weapon_ifmbase.cpp">
       <Filter>Source Files\IFM</Filter>
     </ClCompile>
@@ -3006,6 +3444,96 @@
     </ClCompile>
     <ClCompile Include="..\..\game\shared\weapon_ifmsteadycam.cpp">
       <Filter>Source Files\IFM</Filter>
+    </ClCompile>
+    <ClCompile Include="nav_area.cpp">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="nav_colors.cpp">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="nav_edit.cpp">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="nav_entities.cpp">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="nav_file.cpp">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="nav_generate.cpp">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="nav_ladder.cpp">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="nav_merge.cpp">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="nav_mesh.cpp">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="nav_mesh_factory.cpp">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="nav_node.cpp">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="nav_simplify.cpp">
+      <Filter>Source Files\Navigation Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\NavMeshEntities\func_nav_prerequisite.cpp">
+      <Filter>Source Files\NextBot</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\NextBot.cpp">
+      <Filter>Source Files\NextBot</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\NextBotAttentionInterface.cpp">
+      <Filter>Source Files\NextBot</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\NextBotBodyInterface.cpp">
+      <Filter>Source Files\NextBot</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\NextBotComponentInterface.cpp">
+      <Filter>Source Files\NextBot</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\NextBotGroundLocomotion.cpp">
+      <Filter>Source Files\NextBot</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\NextBotIntentionInterface.cpp">
+      <Filter>Source Files\NextBot</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\NextBotInterface.cpp">
+      <Filter>Source Files\NextBot</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\NextBotLocomotionInterface.cpp">
+      <Filter>Source Files\NextBot</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\NextBotManager.cpp">
+      <Filter>Source Files\NextBot</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\NextBotVisionInterface.cpp">
+      <Filter>Source Files\NextBot</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\simple_bot.cpp">
+      <Filter>Source Files\NextBot</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\Path\NextBotChasePath.cpp">
+      <Filter>Source Files\NextBot\Path</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\Path\NextBotPath.cpp">
+      <Filter>Source Files\NextBot\Path</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\Path\NextBotPathFollow.cpp">
+      <Filter>Source Files\NextBot\Path</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\Player\NextBotPlayer.cpp">
+      <Filter>Source Files\NextBot\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\Player\NextBotPlayerBody.cpp">
+      <Filter>Source Files\NextBot\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="NextBot\Player\NextBotPlayerLocomotion.cpp">
+      <Filter>Source Files\NextBot\Player</Filter>
     </ClCompile>
     <ClCompile Include="..\..\game\shared\pf\engine_patch.cpp">
       <Filter>Source Files\PF2</Filter>
@@ -3355,6 +3883,12 @@
     <ClCompile Include="tf\tf_voteissues.cpp">
       <Filter>Source Files\TF</Filter>
     </ClCompile>
+    <ClCompile Include="tf\nav_mesh\tf_nav_area.cpp">
+      <Filter>Source Files\TF\Nav Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="tf\nav_mesh\tf_nav_mesh.cpp">
+      <Filter>Source Files\TF\Nav Mesh</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\game\shared\tf\tf_projectile_base.cpp">
       <Filter>Source Files\TF\Weapon\Bases</Filter>
     </ClCompile>
@@ -3527,6 +4061,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\vpc_scripts\loadaddress.vpc">
+      <Filter>VPC Scripts</Filter>
+    </None>
+    <None Include="..\..\game\server\nav_mesh.vpc">
       <Filter>VPC Scripts</Filter>
     </None>
     <None Include="..\..\vpc_scripts\platform_dirs.vpc">

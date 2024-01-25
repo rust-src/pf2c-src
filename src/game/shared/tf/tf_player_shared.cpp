@@ -1945,14 +1945,26 @@ void CTFPlayerShared::SetInvulnerable( bool bState, bool bInstant )
 	}
 }
 
+//TF_MOD_BOT changes
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
-int	CTFPlayerShared::FindHealerIndex( CTFPlayer *pPlayer )
+EHANDLE	CTFPlayerShared::GetHealerByIndex(int index)
 {
-	for ( int i = 0; i < m_aHealers.Count(); i++ )
+	if (m_aHealers.IsValidIndex(index))
+		return m_aHealers[index].pPlayer;
+
+	return NULL;
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: 
+//-----------------------------------------------------------------------------
+int	CTFPlayerShared::FindHealerIndex(CTFPlayer *pPlayer)
+{
+	for (int i = 0; i < m_aHealers.Count(); i++)
 	{
-		if ( m_aHealers[i].pPlayer == pPlayer )
+		if (m_aHealers[i].pPlayer == pPlayer)
 			return i;
 	}
 
@@ -1969,6 +1981,16 @@ EHANDLE CTFPlayerShared::GetFirstHealer()
 		return m_aHealers.Head().pPlayer;
 
 	return NULL;
+}
+//-----------------------------------------------------------------------------
+// Purpose: 
+//-----------------------------------------------------------------------------
+bool CTFPlayerShared::HealerIsDispenser(int index) const
+{
+	if (!m_aHealers.IsValidIndex(index))
+		return false;
+
+	return m_aHealers[index].bDispenserHeal;
 }
 #endif
 
