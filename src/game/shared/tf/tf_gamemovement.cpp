@@ -36,9 +36,9 @@ ConVar  tf_solidobjects( "tf_solidobjects", "1", FCVAR_REPLICATED | FCVAR_CHEAT 
 ConVar	tf_clamp_back_speed( "tf_clamp_back_speed", "0.9", FCVAR_REPLICATED | FCVAR_DEVELOPMENTONLY );
 ConVar  tf_clamp_back_speed_min( "tf_clamp_back_speed_min", "100", FCVAR_REPLICATED | FCVAR_DEVELOPMENTONLY );
 
-ConVar	pf_duckjump( "pf_duckjump", "0", FCVAR_REPLICATED | FCVAR_NOTIFY );
-ConVar	pf_autohop( "pf_autohop", "0", FCVAR_REPLICATED | FCVAR_NOTIFY );
-ConVar	pf_disable_bunnyhop_cap( "pf_disable_bunnyhop_cap", "0", FCVAR_REPLICATED | FCVAR_NOTIFY );
+ConVar	pf_duckjump( "pf2c_duckjump", "0", FCVAR_REPLICATED | FCVAR_NOTIFY );
+ConVar	pf_autohop( "pf2c_autohop", "0", FCVAR_REPLICATED | FCVAR_NOTIFY );
+ConVar	pf_disable_bunnyhop_cap( "pf2c_disable_bunnyhop_cap", "0", FCVAR_REPLICATED | FCVAR_NOTIFY );
 
 extern ConVar pf_armor_enabled;
 

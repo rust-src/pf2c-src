@@ -87,7 +87,7 @@ void CAchievementNotificationPanel::PerformLayout( void )
 	m_pLabelTitle->SetBgColor( Color( 0, 0, 0, 0 ) );
 	m_pPanelBackground->SetBgColor( Color( 62,70,55, 200 ) );
 }
-ConVar pf_achievement_notifications( "pf_achievement_notifications", "2", FCVAR_ARCHIVE | FCVAR_DONTRECORD, "Display on screen achievements.\n1 - Only accomplishment notifications are displayed.\n2 - Accomplished and progress notifications are displayed" );
+ConVar pf_achievement_notifications( "pf2c_achievement_notifications", "2", FCVAR_ARCHIVE | FCVAR_DONTRECORD, "Display on screen achievements.\n1 - Only accomplishment notifications are displayed.\n2 - Accomplished and progress notifications are displayed" );
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
@@ -264,7 +264,7 @@ CON_COMMAND_F( achievement_notification_test, "Test the hud notification UI", FC
 	IGameEvent *event = gameeventmanager->CreateEvent( "achievement_event" );
 	if ( event )
 	{
-		const char *szTestStr[] = { "PF_GET_TRANQKILL", "PF_GET_ARMORREPAIRPOINTS", "PF_DESTROY_SAPPER_GUN", "PF_USE_ENEMY_TELEPORTER", "PF_EMP_BLAST_AMMOKILL", "PF_GET_ALT_HEALPOINTS", "PF_NAPALM_BURN" };
+		const char *szTestStr[] = { "pf2c_GET_TRANQKILL", "pf2c_GET_ARMORREPAIRPOINTS", "pf2c_DESTROY_SAPPER_GUN", "pf2c_USE_ENEMY_TELEPORTER", "pf2c_EMP_BLAST_AMMOKILL", "pf2c_GET_ALT_HEALPOINTS", "pf2c_NAPALM_BURN" };
 		event->SetString( "achievement_name", szTestStr[iCount%ARRAYSIZE(szTestStr)] );
 		event->SetInt( "cur_val", ( iCount%9 ) + 1 );
 		event->SetInt( "max_val", 10 );

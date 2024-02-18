@@ -349,7 +349,7 @@ void pf_picmip_helper( IConVar* var, const char* pOldValue, float flOldValue )
 	ConVar* mat_picmip = NULL;
 	mat_picmip = g_pCVar->FindVar( "mat_picmip" );
 	ConVar* pf_picmip = NULL;
-	pf_picmip = g_pCVar->FindVar( "pf_picmip" );
+	pf_picmip = g_pCVar->FindVar( "pf2c_picmip" );
 	if ( mat_picmip && pf_picmip )
 	{
 		int iPicmip = pf_picmip->GetInt();
@@ -367,11 +367,11 @@ void pf_picmip_helper( IConVar* var, const char* pOldValue, float flOldValue )
 		}
 	}
 }
-ConVar pf_picmip( "pf_picmip", "0", FCVAR_ARCHIVE, "Overwrites the texture quality, from -10 to 10. Requires game restart when changed.", true, -10, true, 10, pf_picmip_helper );
+ConVar pf_picmip( "pf2c_picmip", "0", FCVAR_ARCHIVE, "Overwrites the texture quality, from -10 to 10. Requires game restart when changed.", true, -10, true, 10, pf_picmip_helper );
 void mat_picmip_helper( IConVar* var, const char* pOldValue, float flOldValue )
 {
 	ConVar* pf_picmip = NULL;
-	pf_picmip = g_pCVar->FindVar( "pf_picmip" );
+	pf_picmip = g_pCVar->FindVar( "pf2c_picmip" );
 	ConVar* mat_picmip = NULL;
 	mat_picmip = g_pCVar->FindVar( "mat_picmip" );
 	if ( pf_picmip && mat_picmip )

@@ -60,7 +60,7 @@ ConVar obj_child_damage_factor( "obj_child_damage_factor","0.25", FCVAR_CHEAT | 
 ConVar tf_fastbuild("tf_fastbuild", "0", FCVAR_CHEAT, "Increase construction speed" );
 ConVar tf_obj_ground_clearance( "tf_obj_ground_clearance", "32", FCVAR_CHEAT | FCVAR_DEVELOPMENTONLY, "Object corners can be this high above the ground" );
 
-ConVar pf_ignore_nobuild( "pf_ignore_nobuild", "0", FCVAR_CHEAT, "Lets you build where you normally shouldn't" );
+ConVar pf_ignore_nobuild( "pf2c_ignore_nobuild", "0", FCVAR_CHEAT, "Lets you build where you normally shouldn't" );
 
 extern short g_sModelIndexFireball;
 

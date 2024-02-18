@@ -147,7 +147,7 @@ class CAchievementPFGetTranqKill : public CBaseAchievement
 	}
 	// server fires an event for this achievement, no other code within achievement necessary
 };
-DECLARE_ACHIEVEMENT( CAchievementPFGetTranqKill, ACHIEVEMENT_PF_GET_TRANQKILL, "PF_GET_TRANQKILL", 1 );
+DECLARE_ACHIEVEMENT( CAchievementPFGetTranqKill, ACHIEVEMENT_PF_GET_TRANQKILL, "pf2c_GET_TRANQKILL", 1 );
 
 class CAchievementTFGetArmorRepairPoints : public CBaseAchievement
 {
@@ -174,7 +174,7 @@ class CAchievementTFGetArmorRepairPoints : public CBaseAchievement
 		}
 	}
 };
-DECLARE_ACHIEVEMENT( CAchievementTFGetArmorRepairPoints, ACHIEVEMENT_PF_GET_ARMORREPAIRPOINTS, "PF_GET_ARMORREPAIRPOINTS", 10 );
+DECLARE_ACHIEVEMENT( CAchievementTFGetArmorRepairPoints, ACHIEVEMENT_PF_GET_ARMORREPAIRPOINTS, "pf2c_GET_ARMORREPAIRPOINTS", 10 );
 
 class CAchievementPFDestroySapperWithGun : public CBaseAchievement
 {
@@ -185,7 +185,7 @@ class CAchievementPFDestroySapperWithGun : public CBaseAchievement
 	}
 	// server fires an event for this achievement, no other code within achievement necessary
 };
-DECLARE_ACHIEVEMENT( CAchievementPFDestroySapperWithGun, ACHIEVEMENT_PF_DESTROY_SAPPER_GUN, "PF_DESTROY_SAPPER_GUN", 5 );
+DECLARE_ACHIEVEMENT( CAchievementPFDestroySapperWithGun, ACHIEVEMENT_PF_DESTROY_SAPPER_GUN, "pf2c_DESTROY_SAPPER_GUN", 5 );
 
 class CAchievementPFUseEnemyTeleporter : public CBaseAchievement
 {
@@ -196,7 +196,7 @@ class CAchievementPFUseEnemyTeleporter : public CBaseAchievement
 	}
 	// server fires an event for this achievement, no other code within achievement necessary
 };
-DECLARE_ACHIEVEMENT( CAchievementPFUseEnemyTeleporter, ACHIEVEMENT_PF_USE_ENEMY_TELEPORTER, "PF_USE_ENEMY_TELEPORTER", 10 );
+DECLARE_ACHIEVEMENT( CAchievementPFUseEnemyTeleporter, ACHIEVEMENT_PF_USE_ENEMY_TELEPORTER, "pf2c_USE_ENEMY_TELEPORTER", 10 );
 
 class CAchievementPFEMPBlastAmmoKill : public CBaseAchievement
 {
@@ -207,7 +207,7 @@ class CAchievementPFEMPBlastAmmoKill : public CBaseAchievement
 	}
 	// server fires an event for this achievement, no other code within achievement necessary
 };
-DECLARE_ACHIEVEMENT( CAchievementPFEMPBlastAmmoKill, ACHIEVEMENT_PF_EMP_BLAST_AMMOKILL, "PF_EMP_BLAST_AMMOKILL", 5 );
+DECLARE_ACHIEVEMENT( CAchievementPFEMPBlastAmmoKill, ACHIEVEMENT_PF_EMP_BLAST_AMMOKILL, "pf2c_EMP_BLAST_AMMOKILL", 5 );
 
 class CAchievementTFGetAltHealingPoints : public CBaseAchievement
 {
@@ -234,7 +234,7 @@ class CAchievementTFGetAltHealingPoints : public CBaseAchievement
 		}
 	}
 };
-DECLARE_ACHIEVEMENT( CAchievementTFGetAltHealingPoints, ACHIEVEMENT_PF_GET_ALT_HEALPOINTS, "PF_GET_ALT_HEALPOINTS", 10 );
+DECLARE_ACHIEVEMENT( CAchievementTFGetAltHealingPoints, ACHIEVEMENT_PF_GET_ALT_HEALPOINTS, "pf2c_GET_ALT_HEALPOINTS", 10 );
 
 class CAchievementPFNapalmBurn : public CBaseAchievement
 {
@@ -245,7 +245,7 @@ class CAchievementPFNapalmBurn : public CBaseAchievement
 	}
 	// server fires an event for this achievement, no other code within achievement necessary
 };
-DECLARE_ACHIEVEMENT( CAchievementPFNapalmBurn, ACHIEVEMENT_PF_NAPALM_BURN, "PF_NAPALM_BURN", 5 );
+DECLARE_ACHIEVEMENT( CAchievementPFNapalmBurn, ACHIEVEMENT_PF_NAPALM_BURN, "pf2c_NAPALM_BURN", 5 );
 
 //-----------------------------------------------------------------------------
 // Purpose: see if a round win was a win for the local player with no enemy caps

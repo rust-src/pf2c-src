@@ -34,7 +34,7 @@ BEGIN_NETWORK_TABLE(CTFFlameRocket, DT_TFFlameRocket)
 	SendPropBool(SENDINFO(m_bCritical)),
 END_NETWORK_TABLE()
 
-ConVar pf_flamerocket_gravity( "pf_flamerocket_gravity", "0.15", FCVAR_GAMEDLL );
+ConVar pf_flamerocket_gravity( "pf2c_flamerocket_gravity", "0.15", FCVAR_GAMEDLL );
 
 //-----------------------------------------------------------------------------
 // Purpose:

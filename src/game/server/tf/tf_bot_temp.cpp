@@ -80,8 +80,8 @@ public:
 		CBasePlayer::s_PlayerEdict = pEdict;
 
 		// Need these so it doesn't complain
-		engine->SetFakeClientConVarValue( pEdict, "pf_grenade_press_throw", "0" );
-		engine->SetFakeClientConVarValue( pEdict, "pf_holdzoom", "0" );
+		engine->SetFakeClientConVarValue( pEdict, "pf2c_grenade_press_throw", "0" );
+		engine->SetFakeClientConVarValue( pEdict, "pf2c_holdzoom", "0" );
 
 		CTFPlayer* pPlayer = static_cast< CTFPlayer* >( CreateEntityByName( "player" ) );
 		if ( pPlayer )

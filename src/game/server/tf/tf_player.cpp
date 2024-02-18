@@ -2842,16 +2842,16 @@ ConVar tf_debug_damage( "tf_debug_damage", "0", FCVAR_CHEAT | FCVAR_DEVELOPMENTO
 #define ARMOR_RATIO	0.2
 #define ARMOR_BONUS	1.0
 
-ConVar pf_grenades_no_self_damage( "pf_grenades_no_self_damage", "0", FCVAR_NOTIFY );
+ConVar pf_grenades_no_self_damage( "pf2c_grenades_no_self_damage", "0", FCVAR_NOTIFY );
 
-ConVar pf_armor_ratio_light( "pf_armor_ratio_light", "0.3", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY, "Percentage of damage the player takes", true, 0, true, 1.0 );
-ConVar pf_armor_ratio_medium( "pf_armor_ratio_medium", "0.6", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY, "Percentage of damage the player takes", true, 0, true, 1.0 );
-ConVar pf_armor_ratio_heavy( "pf_armor_ratio_heavy", "0.8", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY, "Percentage of damage the player takes", true, 0, true, 1.0 );
+ConVar pf_armor_ratio_light( "pf2c_armor_ratio_light", "0.3", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY, "Percentage of damage the player takes", true, 0, true, 1.0 );
+ConVar pf_armor_ratio_medium( "pf2c_armor_ratio_medium", "0.6", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY, "Percentage of damage the player takes", true, 0, true, 1.0 );
+ConVar pf_armor_ratio_heavy( "pf2c_armor_ratio_heavy", "0.8", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY, "Percentage of damage the player takes", true, 0, true, 1.0 );
 
-ConVar pf_armor_ratio( "pf_armor_ratio", "0.5", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY, "Percentage of damage the player takes" );
-ConVar pf_armor_bonus( "pf_armor_bonus", "1", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY, "Percentage of armor consumed for the remaining the damage" );
-ConVar pf_armor_bonus_multi_explosive( "pf_armor_bonus_multi_explosive", "1", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY, "Extra armor taken on explosive damage", true, 1, false, 1.0 );
-ConVar pf_armor_bonus_multi_headshots( "pf_armor_bonus_multi_headshots", "1", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY, "Extra armor taken on headshots", true, 1, false, 1.0 );
+ConVar pf_armor_ratio( "pf2c_armor_ratio", "0.5", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY, "Percentage of damage the player takes" );
+ConVar pf_armor_bonus( "pf2c_armor_bonus", "1", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY, "Percentage of armor consumed for the remaining the damage" );
+ConVar pf_armor_bonus_multi_explosive( "pf2c_armor_bonus_multi_explosive", "1", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY, "Extra armor taken on explosive damage", true, 1, false, 1.0 );
+ConVar pf_armor_bonus_multi_headshots( "pf2c_armor_bonus_multi_headshots", "1", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY, "Extra armor taken on headshots", true, 1, false, 1.0 );
 
 //-----------------------------------------------------------------------------
 // Purpose: 
@@ -3850,7 +3850,7 @@ void CTFPlayer::Event_Killed( const CTakeDamageInfo &info )
 	}
 }
 
-ConVar pf_deathanims_always( "pf_deathanims_always", "0", FCVAR_DEVELOPMENTONLY );
+ConVar pf_deathanims_always( "pf2c_deathanims_always", "0", FCVAR_DEVELOPMENTONLY );
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------

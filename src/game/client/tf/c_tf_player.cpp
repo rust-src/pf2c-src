@@ -86,7 +86,7 @@ ConVar tf_playergib_force( "tf_playersgib_force", "500.0", FCVAR_CHEAT | FCVAR_D
 ConVar tf_playergib_maxspeed( "tf_playergib_maxspeed", "400", FCVAR_CHEAT | FCVAR_DEVELOPMENTONLY, "Max gib speed." );
 
 ConVar cl_autoreload( "cl_autoreload", "1", FCVAR_CLIENTDLL | FCVAR_USERINFO | FCVAR_ARCHIVE, "When set to 1, clip-using weapons will automatically be reloaded whenever they're not being fired." );
-ConVar pf_holdzoom( "pf_holdzoom", "0", FCVAR_CLIENTDLL | FCVAR_USERINFO | FCVAR_ARCHIVE, "When set to 1, sniper rifle will require holding down ATTACK2 to zoom." );
+ConVar pf_holdzoom( "pf2c_holdzoom", "0", FCVAR_CLIENTDLL | FCVAR_USERINFO | FCVAR_ARCHIVE, "When set to 1, sniper rifle will require holding down ATTACK2 to zoom." );
 
 
 #define BDAY_HAT_MODEL		"models/effects/bday_hat.mdl"

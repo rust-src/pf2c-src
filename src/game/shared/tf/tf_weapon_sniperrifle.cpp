@@ -77,9 +77,9 @@ PRECACHE_WEAPON_REGISTER( tf_weapon_sniperrifle );
 
 extern ConVar pf_armor_enabled;
 ConVar tf_sniper_rifle_charge_multiplier( "tf_sniper_rifle_charge_damage_multiplier", "3", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY | FCVAR_REPLICATED );
-ConVar pf_sniper_rifle_tfc_style( "pf_sniper_rifle_tfc_style", "0", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY | FCVAR_REPLICATED );
-ConVar pf_sniper_rifle_tfc_noair( "pf_sniper_rifle_tfc_noair", "1", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY | FCVAR_REPLICATED );
-ConVar pf_sniper_rifle_tfc_nofire( "pf_sniper_rifle_tfc_nofire", "1", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY | FCVAR_REPLICATED );
+ConVar pf_sniper_rifle_tfc_style( "pf2c_sniper_rifle_tfc_style", "0", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY | FCVAR_REPLICATED );
+ConVar pf_sniper_rifle_tfc_noair( "pf2c_sniper_rifle_tfc_noair", "1", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY | FCVAR_REPLICATED );
+ConVar pf_sniper_rifle_tfc_nofire( "pf2c_sniper_rifle_tfc_nofire", "1", FCVAR_DEVELOPMENTONLY | FCVAR_NOTIFY | FCVAR_REPLICATED );
 
 //=============================================================================
 //

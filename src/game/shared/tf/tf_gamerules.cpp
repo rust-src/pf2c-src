@@ -114,7 +114,7 @@ void pf_cp_flag_helper(IConVar* var, const char* pOldValue, float flOldValue)
 
 }
 #endif
-ConVar pf_cp_flag("pf_cp_flag", "0", FCVAR_NOTIFY | FCVAR_REPLICATED, "Activates the flag on control point maps (if they support it)."
+ConVar pf_cp_flag("pf2c_cp_flag", "0", FCVAR_NOTIFY | FCVAR_REPLICATED, "Activates the flag on control point maps (if they support it)."
 #ifdef GAME_DLL
 	, pf_cp_flag_helper
 #endif
@@ -127,7 +127,7 @@ void pf_armor_enabled_helper( IConVar* var, const char* pOldValue, float flOldVa
 		TFGameRules()->UpdateArmorMode();
 }
 #endif
-ConVar pf_armor_enabled( "pf_armor_enabled", "1", FCVAR_NOTIFY | FCVAR_REPLICATED, "Controls if armor is enabled."
+ConVar pf_armor_enabled( "pf2c_armor_enabled", "1", FCVAR_NOTIFY | FCVAR_REPLICATED, "Controls if armor is enabled."
 #ifdef GAME_DLL
 	, pf_armor_enabled_helper
 #endif
@@ -1799,8 +1799,8 @@ void CTFGameRules::ClientSettingsChanged( CBasePlayer *pPlayer )
 	// keep track of their cl_autoreload value
 	pTFPlayer->SetAutoReload( Q_atoi( engine->GetClientConVarValue( pPlayer->entindex(), "cl_autoreload" ) ) > 0 );
 
-	pTFPlayer->SetGrenadePressThrow( Q_atoi( engine->GetClientConVarValue( pPlayer->entindex(), "pf_grenade_press_throw" ) ) > 0 );
-	pTFPlayer->SetHoldZoom( Q_atoi( engine->GetClientConVarValue( pPlayer->entindex(), "pf_holdzoom" ) ) > 0 );
+	pTFPlayer->SetGrenadePressThrow( Q_atoi( engine->GetClientConVarValue( pPlayer->entindex(), "pf2c_grenade_press_throw" ) ) > 0 );
+	pTFPlayer->SetHoldZoom( Q_atoi( engine->GetClientConVarValue( pPlayer->entindex(), "pf2c_holdzoom" ) ) > 0 );
 	
 
 	const char *pszFov = engine->GetClientConVarValue( pPlayer->entindex(), "fov_desired" );

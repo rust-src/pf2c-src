@@ -52,17 +52,17 @@ static const char *s_PlayerModelPostfix[] =
 };
 
 #ifdef CLIENT_DLL
-/*ConVar pf_playermodel_scout( "pf_playermodel_scout", "0", FCVAR_ARCHIVE, "Changes class model.", true, 0, true, 3 );
-ConVar pf_playermodel_sniper( "pf_playermodel_sniper", "0", FCVAR_ARCHIVE, "Changes class model.", true, 0, true, 3 );
-ConVar pf_playermodel_soldier( "pf_playermodel_soldier", "0", FCVAR_ARCHIVE, "Changes class model.", true, 0, true, 3 );
-ConVar pf_playermodel_demoman( "pf_playermodel_demoman", "0", FCVAR_ARCHIVE, "Changes class model.", true, 0, true, 3 );
-ConVar pf_playermodel_medic( "pf_playermodel_medic", "0", FCVAR_ARCHIVE, "Changes class model.", true, 0, true, 3 );
-ConVar pf_playermodel_heavyweapons( "pf_playermodel_heavyweapons", "0", FCVAR_ARCHIVE, "Changes class model.", true, 0, true, 3 );
-ConVar pf_playermodel_pyro( "pf_playermodel_pyro", "0", FCVAR_ARCHIVE, "Changes class model.", true, 0, true, 3 );
-ConVar pf_playermodel_spy( "pf_playermodel_spy", "0", FCVAR_ARCHIVE, "Changes class model.", true, 0, true, 3 );
-ConVar pf_playermodel_engineer( "pf_playermodel_engineer", "0", FCVAR_ARCHIVE, "Changes class model.", true, 0, true, 3 );
+/*ConVar pf_playermodel_scout( "pf2c_playermodel_scout", "0", FCVAR_ARCHIVE, "Changes class model.", true, 0, true, 3 );
+ConVar pf_playermodel_sniper( "pf2c_playermodel_sniper", "0", FCVAR_ARCHIVE, "Changes class model.", true, 0, true, 3 );
+ConVar pf_playermodel_soldier( "pf2c_playermodel_soldier", "0", FCVAR_ARCHIVE, "Changes class model.", true, 0, true, 3 );
+ConVar pf_playermodel_demoman( "pf2c_playermodel_demoman", "0", FCVAR_ARCHIVE, "Changes class model.", true, 0, true, 3 );
+ConVar pf_playermodel_medic( "pf2c_playermodel_medic", "0", FCVAR_ARCHIVE, "Changes class model.", true, 0, true, 3 );
+ConVar pf_playermodel_heavyweapons( "pf2c_playermodel_heavyweapons", "0", FCVAR_ARCHIVE, "Changes class model.", true, 0, true, 3 );
+ConVar pf_playermodel_pyro( "pf2c_playermodel_pyro", "0", FCVAR_ARCHIVE, "Changes class model.", true, 0, true, 3 );
+ConVar pf_playermodel_spy( "pf2c_playermodel_spy", "0", FCVAR_ARCHIVE, "Changes class model.", true, 0, true, 3 );
+ConVar pf_playermodel_engineer( "pf2c_playermodel_engineer", "0", FCVAR_ARCHIVE, "Changes class model.", true, 0, true, 3 );
 */
-//ConVar pf_playermodel_era("pf_playermodel_era", "0", FCVAR_ARCHIVE, "Changes class models used", true, 0, true, 3);
+//ConVar pf_playermodel_era("pf2c_playermodel_era", "0", FCVAR_ARCHIVE, "Changes class models used", true, 0, true, 3);
 
 #endif
 
@@ -152,8 +152,8 @@ const char *TFPlayerClassData_t::GetModelName() const
 	/*if (m_pBetaPlayerModelsKV)
 	{
 		ConVar * pf_playermodel_era = nullptr;
-		//convar_betamodels = g_pCVar->FindVar( VarArgs( "pf_playermodel_%s", m_szClassName ) );
-		pf_playermodel_era = g_pCVar->FindVar( "pf_playermodel_era" );
+		//convar_betamodels = g_pCVar->FindVar( VarArgs( "pf2c_playermodel_%s", m_szClassName ) );
+		pf_playermodel_era = g_pCVar->FindVar( "pf2c_playermodel_era" );
 		if ( pf_playermodel_era && pf_playermodel_era->GetInt() > 0)
 		{
 			for (KeyValues *kv = m_pBetaPlayerModelsKV->GetFirstSubKey(); kv; kv = kv->GetNextKey())

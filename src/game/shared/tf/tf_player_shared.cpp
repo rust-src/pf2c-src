@@ -92,7 +92,7 @@ void FlagSpeed_ChangeCallback( IConVar *var, const char *pOldValue, float flOldV
 #else
 #define FlagSpeed_ChangeCallback nullptr
 #endif
-ConVar pf_flag_speed_penalty( "pf_flag_speed_penalty", "0.75", FCVAR_REPLICATED | FCVAR_NOTIFY, "Speed penalty while carrying the flag.", true, 0.1f, true, 1.0f, FlagSpeed_ChangeCallback );
+ConVar pf_flag_speed_penalty( "pf2c_flag_speed_penalty", "0.75", FCVAR_REPLICATED | FCVAR_NOTIFY, "Speed penalty while carrying the flag.", true, 0.1f, true, 1.0f, FlagSpeed_ChangeCallback );
 
 //ConVar tf_spy_stealth_blink_time( "tf_spy_stealth_blink_time", "0.3", FCVAR_DEVELOPMENTONLY, "time after being hit the spy blinks into view" );
 //ConVar tf_spy_stealth_blink_scale( "tf_spy_stealth_blink_scale", "0.85", FCVAR_DEVELOPMENTONLY, "percentage visible scalar after being hit the spy blinks into view" );

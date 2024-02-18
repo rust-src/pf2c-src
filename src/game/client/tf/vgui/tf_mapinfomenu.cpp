@@ -509,7 +509,7 @@ static s_MapTypeInfo s_MapTypes[] = {
 	"tc_",		3, "#TF_TerritoryControl",
 	//---------------------- PF2 game types ----------------------
 	"ad_",		3, "#Gametype_AttackDefense",
-	"pf_",		3, "#Gametype_PreFortress",
+	"pf2c_",		3, "#Gametype_PreFortress",
 };
 
 //-----------------------------------------------------------------------------

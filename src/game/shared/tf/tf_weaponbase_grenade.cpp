@@ -33,7 +33,7 @@
 //
 
 #if defined (CLIENT_DLL)
-ConVar pf_grenade_press_throw( "pf_grenade_press_throw", "0", FCVAR_CLIENTDLL | FCVAR_ARCHIVE | FCVAR_USERINFO, "Causes grenades to require a second button press to throw." );
+ConVar pf_grenade_press_throw( "pf2c_grenade_press_throw", "0", FCVAR_CLIENTDLL | FCVAR_ARCHIVE | FCVAR_USERINFO, "Causes grenades to require a second button press to throw." );
 #endif
 
 IMPLEMENT_NETWORKCLASS_ALIASED( TFWeaponBaseGrenade, DT_TFWeaponBaseGrenade )

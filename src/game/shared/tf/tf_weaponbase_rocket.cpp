@@ -58,7 +58,7 @@ END_DATADESC()
 ConVar tf_rocket_show_radius( "tf_rocket_show_radius", "0", FCVAR_REPLICATED | FCVAR_CHEAT, "Render rocket radius." );
 
 #ifdef GAME_DLL
-ConVar pf_flamerocket_velocity( "pf_flamerocket_velocity", "650", FCVAR_GAMEDLL );
+ConVar pf_flamerocket_velocity( "pf2c_flamerocket_velocity", "650", FCVAR_GAMEDLL );
 #endif
 
 //=============================================================================

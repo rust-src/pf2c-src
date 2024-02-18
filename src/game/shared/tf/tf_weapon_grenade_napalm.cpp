@@ -48,7 +48,7 @@ PRECACHE_WEAPON_REGISTER(tf_weapon_grenade_napalm);
 
 // Server specific.
 #ifdef GAME_DLL
-ConVar pf_napalm_bomb( "pf_napalm_bomb", "0", FCVAR_NOTIFY, "Alternative napalm grenade functionality. Behaves more like a standard frag grenade, but sets people on fire " );
+ConVar pf_napalm_bomb( "pf2c_napalm_bomb", "0", FCVAR_NOTIFY, "Alternative napalm grenade functionality. Behaves more like a standard frag grenade, but sets people on fire " );
 
 BEGIN_DATADESC(CTFGrenadeNapalm)
 END_DATADESC()

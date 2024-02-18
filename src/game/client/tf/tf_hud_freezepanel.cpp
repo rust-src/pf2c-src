@@ -35,7 +35,7 @@ extern float g_flFreezeFlash;
 
 #define FREEZECAM_SCREENSHOT_STRING "is looking good!"
 
-ConVar pf_freezecammodel( "pf_freezecammodel", "1", FCVAR_ARCHIVE, "Enables using a model for freeze cam." );
+ConVar pf_freezecammodel( "pf2c_freezecammodel", "1", FCVAR_ARCHIVE, "Enables using a model for freeze cam." );
 
 bool IsTakingAFreezecamScreenshot( void )
 {
