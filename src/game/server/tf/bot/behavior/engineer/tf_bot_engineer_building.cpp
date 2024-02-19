@@ -251,7 +251,61 @@ bool CTFBotEngineerBuilding::CheckIfSentryIsOutOfPosition( CTFBot *me ) const
 
 bool CTFBotEngineerBuilding::PickTeleportLocation( CTFBot *actor, Vector *pLocation, float &pYaw )
 {
-	return false;
+	CUtlVector<CTFNavArea *> surroundingAreas;
+	const float searchRange = 1000.0f;
+	const float maxHeight = 200.0f;
+	Vector vecAreaCenter;
+	CTFNavArea *pArea = NULL;
+
+	if ( TFGameRules()->GetGameType() == TF_GAMETYPE_CP )
+	{
+		CBaseEntity *pPoint = actor->GetMyControlPoint();
+		if ( !pPoint )
+			return false;
+
+		pArea = static_cast<CTFNavArea *>( TheNavMesh->GetNearestNavArea( pPoint->WorldSpaceCenter(), false, 500.0f, true ) );
+		if ( !pArea )
+			return false;
+
+		vecAreaCenter = pArea->GetCenter();
+		CollectSurroundingAreas( &surroundingAreas, pArea, searchRange, maxHeight, maxHeight );
+	}
+	else
+	{
+		return false;
+	}
+
+	Vector vecLocation = FindHiddenSpot( pArea, surroundingAreas );
+	if ( vecLocation.IsZero() )
+		return false;
+
+	Vector vecDirection = vecLocation - vecAreaCenter;
+
+	// Try to point it away from smacking your face into a wall
+	CTraceFilterWorldAndPropsOnly filter;
+	Vector vecStart = vecLocation + Vector( 0, 0, StepHeight ); // Check if we are not able to step over something
+	Vector vecEnd = vecStart + vecDirection * 50;
+
+	trace_t trace;
+	UTIL_TraceLine( vecStart, vecEnd, MASK_PLAYERSOLID, &filter, &trace );
+	if ( trace.DidHit() )
+	{
+		const int tries = 30;
+		for ( int i=0; i < tries; ++i )
+		{
+			const float flYaw = RandomFloat( -180.0, 180.0 );
+			vecDirection = UTIL_YawToVector( flYaw );
+			vecEnd = vecStart + vecDirection * 50;
+
+			UTIL_TraceLine( vecStart, vecEnd, MASK_PLAYERSOLID, &filter, &trace );
+			if ( !trace.DidHit() )
+				break;
+		}
+	}
+
+	*pLocation = vecLocation;
+	pYaw = vecDirection[ YAW ];
+	return true;
 }
 
 Vector CTFBotEngineerBuilding::FindHiddenSpot( CTFNavArea *pPointArea, const CUtlVector<CTFNavArea *> &surroundingAreas )
@@ -297,6 +351,22 @@ Vector CTFBotEngineerBuilding::FindHiddenSpot( CTFNavArea *pPointArea, const CUt
 
 bool CTFBotEngineerBuilding::IsMetalSourceNearby( CTFBot *me ) const
 {
+	CUtlVector<CTFNavArea *> areas;
+	CollectSurroundingAreas( &areas, me->GetLastKnownArea(), 2000.0f, 
+							 me->GetLocomotionInterface()->GetStepHeight(), me->GetLocomotionInterface()->GetDeathDropHeight() );
+
+	for ( CTFNavArea *pArea : areas )
+	{
+		if ( pArea->HasTFAttributes( AMMO ) )
+			return true;
+
+		if ( me->GetTeamNumber() == TF_TEAM_RED && pArea->HasTFAttributes( RED_SPAWN_ROOM ) )
+			return true;
+
+		if ( me->GetTeamNumber() == TF_TEAM_BLUE && pArea->HasTFAttributes( BLUE_SPAWN_ROOM ) )
+			return true;
+	}
+
 	return false;
 }
 

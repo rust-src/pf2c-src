@@ -1821,7 +1821,7 @@ void CTFBot::UpdateLookingForIncomingEnemies( bool enemy )
 
 	int iTeam = enemy ? GetTeamNumber() : GetEnemyTeam( this );
 	// really shouldn't happen
-	if ( iTeam < 0 || iTeam > 5 )
+	if ( iTeam < 0 || iTeam > 3 )
 		iTeam = 0;
 
 	float fRange = 150.0f;
@@ -1834,7 +1834,7 @@ void CTFBot::UpdateLookingForIncomingEnemies( bool enemy )
 		for ( int i = 0; i < 20; ++i )
 		{
 			const Vector vSpot = areas.Random()->GetRandomPoint();
-			if ( this->IsRangeGreaterThan( vSpot, fRange ) ) 
+			if ( this->IsRangeGreaterThan( vSpot, fRange ) )
 			{
 				if ( GetVisionInterface()->IsLineOfSightClear( vSpot ) )
 				{

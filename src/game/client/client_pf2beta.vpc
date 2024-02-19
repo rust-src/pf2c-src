@@ -15,7 +15,7 @@ $Configuration
 	$Compiler
 	{
 		$AdditionalIncludeDirectories	".\hl2;.\tf;.\tf\vgui;.\pf;.\pf\vgui;$SRCDIR\game\client\pf\gameui;$SRCDIR\game\shared\Multiplayer;$SRCDIR\game\shared\tf;$SRCDIR\game\shared\pf;$BASE"
-		$PreprocessorDefinitions		"$BASE;PF2;PF2_CLIENT;GLOWS_ENABLE;"
+		$PreprocessorDefinitions		"$BASE;PF2;PF2_CLIENT;GLOWS_ENABLE;NEXT_BOT"
 	}
 }
 
