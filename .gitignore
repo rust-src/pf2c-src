@@ -74,3 +74,5 @@ demoheader.tmp
 
 # shader files
 *.tmp
+src/pf2.sdf
+src/pf2.v12.suo
