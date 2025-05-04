@@ -50,7 +50,7 @@ jobs:
         run: tar cJfv build-rel-PF2C-Windows.tar.xz game
 
       - name: Upload product
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: PF2C Bin (Windows)
           path: build-rel-PF2C-Windows.tar.xz
