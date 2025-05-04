@@ -14,17 +14,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install VS2013 (v120) Toolset for VS2022
+      - name: Setup MSBuild and v120 toolset
+        uses: microsoft/setup-msbuild@v1
+        with:
+          vs-version: '[17.0,18.0)'
+          components: Microsoft.VisualStudio.Component.VC.v120
+
+      - name: Diagnostic - List installed VS components
         run: |
-          Invoke-WebRequest -Uri https://aka.ms/vs/17/release/vs_BuildTools.exe -OutFile vs_BuildTools.exe
-          Start-Process -Wait -FilePath .\vs_BuildTools.exe -ArgumentList `
-            "--quiet", `
-            "--wait", `
-            "--norestart", `
-            "--nocache", `
-            "--add", "Microsoft.VisualStudio.Component.VC.v120", `
-            "--add", "Microsoft.VisualStudio.Component.VC.Tools.x86.x64", `
-            "--installPath", "C:\BuildTools"
+          & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -products * -format json
 
       - name: Run createpf2.bat
         run: |
