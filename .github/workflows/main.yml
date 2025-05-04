@@ -26,6 +26,11 @@ jobs:
             "--add", "Microsoft.VisualStudio.Component.VC.Tools.x86.x64", `
             "--installPath", "C:\BuildTools"
 
+      - name: Run createpf2.bat
+        run: |
+          cd src
+          call createpf2.bat
+
       - name: Find MSBuild path
         id: msbuild
         run: |
