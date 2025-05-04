@@ -1,0 +1,27 @@
+name: Build with Visual Studio 2013
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Visual Studio 2013 Build Tools
+        run: |
+          choco install microsoft-build-tools-2013 --version 14.0.25420.1 --params "/NoRestart /Quiet"
+          refreshenv
+
+      - name: Build with MSBuild
+        run: |
+          $msbuild = & "C:\Program Files (x86)\Microsoft Visual Studio 12.0\MSBuild\12.0\Bin\MSBuild.exe" "src\pf2.sln" /p:Configuration=Release
+          if ($?) { Write-Host "Build succeeded." } else { Write-Host "Build failed."; exit 1 }
