@@ -1,10 +1,12 @@
-name: Build with MSBuild (VS2022 + v120 toolset)
+name: Build with Visual Studio 2013
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   build:
@@ -14,22 +16,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install VS2013 (v120) Toolset for VS2022
+      - name: Install Visual Studio 2013 Build Tools
         run: |
-          Invoke-WebRequest -Uri https://aka.ms/vs/17/release/vs_BuildTools.exe -OutFile vs_BuildTools.exe
-          Start-Process -Wait -FilePath .\vs_BuildTools.exe -ArgumentList `
-            "--quiet", `
-            "--wait", `
-            "--norestart", `
-            "--nocache", `
-            "--add", "Microsoft.VisualStudio.Component.VC.v120", `
-            "--add", "Microsoft.VisualStudio.Component.VC.Tools.x86.x64", `
-            "--installPath", "C:\BuildTools"
-
-      - name: Diagnostic - Confirm v120 toolset is installed
-        run: |
-          choco install vswhere -y
-          & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -products * -requires Microsoft.VisualStudio.Component.VC.v120 -format json
+          choco install microsoft-build-tools-2013 --version 14.0.25420.1 --params "/NoRestart /Quiet"
+          refreshenv
 
       - name: Run createpf2.bat
         run: |
@@ -39,9 +29,10 @@ jobs:
       - name: Find MSBuild path
         id: msbuild
         run: |
+          choco install vswhere -y
           $MSBuildPath = &"${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe
           echo "MSBuildPath=$MSBuildPath" >> $env:GITHUB_ENV
 
       - name: Build with MSBuild
         run: |
-          & "$env:MSBuildPath" "src\pf2.sln" /p:Configuration=Release /p:PlatformToolset=v120 /verbosity:diagnostic
+          & "$env:MSBuildPath" "src\pf2.sln" /p:Configuration=Release /p:PlatformToolset=v120
