@@ -16,10 +16,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Microsoft Build Tools 2013
+      - name: Install Chocolatey
         run: |
-          choco install microsoft-build-tools --version 12.0.21005.1 -y
-          refreshenv
+          Set-ExecutionPolicy Bypass -Scope Process -Force
+          [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+          iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+      - name: Install Visual Studio 2013 Build Tools
+        run: |
+          choco install microsoft-build-tools-2013 -y
 
       - name: Run createpf2.bat
         run: |
@@ -30,7 +35,7 @@ jobs:
         id: msbuild
         run: |
           choco install vswhere -y
-          $MSBuildPath = &"${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe
+          $MSBuildPath = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe
           echo "MSBuildPath=$MSBuildPath" >> $env:GITHUB_ENV
 
       - name: Build with MSBuild
