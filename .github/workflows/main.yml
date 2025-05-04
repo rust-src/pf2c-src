@@ -44,3 +44,13 @@ jobs:
       - name: Build with MSBuild
         run: |
           & "$env:MSBuildPath" "src\pf2.sln" /p:Configuration=Release /p:PlatformToolset=v120
+      
+      - name: Pack
+        shell: bash
+        run: tar cJfv build-rel-PF2C-Windows.tar.xz game
+
+      - name: Upload product
+        uses: actions/upload-artifact@v2
+        with:
+          name: PF2C Bin (Windows)
+          path: build-rel-PF2C-Windows.tar.xz
