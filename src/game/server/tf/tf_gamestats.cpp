@@ -17,8 +17,8 @@
 
 // Must run with -gamestats to be able to turn on/off stats with ConVar below.
 static ConVar tf_stats_nogameplaycheck("tf_stats_nogameplaycheck", "0", FCVAR_NONE, "Disable normal check for valid gameplay, send stats regardless.");
-//static ConVar tf_stats_track( "tf_stats_track", "1", FCVAR_NONE, "Turn on//off tf stats tracking." );
-//static ConVar tf_stats_verbose( "tf_stats_verbose", "0", FCVAR_NONE, "Turn on//off verbose logging of stats." );
+static ConVar tf_stats_track( "tf_stats_track", "1", FCVAR_NONE, "Turn on//off tf stats tracking." );
+static ConVar tf_stats_verbose( "tf_stats_verbose", "0", FCVAR_NONE, "Turn on//off verbose logging of stats." );
 
 CTFGameStats CTF_GameStats;
 
@@ -114,6 +114,20 @@ bool CTFGameStats::Init( void )
 {
 	return true;
 }
+
+//-----------------------------------------------------------------------------
+// Purpose:
+//-----------------------------------------------------------------------------
+void StripNewlineFromString(char* string)
+{
+	int nStrlength = strlen(string) - 1;
+	if (nStrlength >= 0)
+	{
+		if (string[nStrlength] == '\n' || string[nStrlength] == '\r')
+			string[nStrlength] = 0;
+	}
+}
+
 
 //-----------------------------------------------------------------------------
 // Purpose: 
@@ -262,6 +276,7 @@ void CTFGameStats::SendStatsToPlayer( CTFPlayer *pPlayer, int iMsgType )
 
 	int iStat = TFSTAT_FIRST;
 	CSingleUserRecipientFilter filter( pPlayer );
+	filter.MakeReliable();
 	UserMessageBegin( filter, "PlayerStatsUpdate" );
 	WRITE_BYTE( pPlayer->GetPlayerClass()->GetClassIndex() );		// write the class
 	WRITE_BYTE( iMsgType );											// type of message
@@ -405,6 +420,8 @@ void CTFGameStats::Event_PlayerForceRespawn( CTFPlayer *pPlayer )
 			m_reportedStats.m_pCurrentGame->m_aClassStats[iClass].iTotalTime += (int) ( gpGlobals->curtime - pPlayer->GetSpawnTime() );
 		}
 	}
+
+	AccumulateAndResetPerLifeStats(pPlayer);
 }
 
 //-----------------------------------------------------------------------------
@@ -538,7 +555,7 @@ void CTFGameStats::Event_Backstab( CTFPlayer *pKiller )
 void CTFGameStats::Event_PlayerUsedTeleport( CTFPlayer *pTeleportOwner, CTFPlayer *pTeleportingPlayer )
 {
 	// We don't count the builder's teleports
-	if ( pTeleportOwner != pTeleportingPlayer )
+	if (pTeleportOwner && pTeleportOwner != pTeleportingPlayer)
 	{
 		IncrementStat( pTeleportOwner, TFSTAT_TELEPORTS, 1 );
 	}
@@ -600,7 +617,7 @@ void CTFGameStats::Event_PlayerDamage( CBasePlayer *pBasePlayer, const CTakeDama
 	killerOrg.Init();
 
 	// set the location where the target was hit
-	const Vector &org = pTarget->GetAbsOrigin();
+	const Vector& org = pTarget ? pTarget->GetAbsOrigin() : vec3_origin;
 	damage.nTargetPosition[ 0 ] = static_cast<int>( org.x );
 	damage.nTargetPosition[ 1 ] = static_cast<int>( org.y );
 	damage.nTargetPosition[ 2 ] = static_cast<int>( org.z );
@@ -863,7 +880,7 @@ void CTFGameStats::Event_PlayerKilled( CBasePlayer *pPlayer, const CTakeDamageIn
 	CBaseEntity *pKiller = info.GetAttacker();
 	CTFPlayer *pScorer = ToTFPlayer( TFGameRules()->GetDeathScorer( pKiller, pInflictor, pPlayer ) );
 
-	if ( dynamic_cast< CObjectSentrygun * >( pInflictor ) != NULL )
+	if (pInflictor && pInflictor->IsBaseObject() && dynamic_cast<CObjectSentrygun*>(pInflictor) != NULL)
 	{
 		killerOrg = pInflictor->GetAbsOrigin();
 	}
