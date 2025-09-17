@@ -103,6 +103,29 @@ public:
 protected:
 
 	PlayerStats_t				m_aPlayerStats[MAX_PLAYERS+1];	// List of stats for each player for current life - reset after each death or class change
+
+public:
+
+	// Stats structs used for the new steamworks reporting.
+	//TF_Gamestats_RoundStats_t	m_currentRoundRed;
+	//TF_Gamestats_RoundStats_t	m_currentRoundBlue;
+	//TF_Gamestats_KillStats_t	m_currentKill;
+	TF_Gamestats_LevelStats_t	m_currentMap;
+
+	bool						m_bRoundActive;
+	int							m_iRoundsPlayed;
+	bool						m_bServerShutdown;
+	int							m_iGameEndReason;
+
+	// Unique Column Keys
+	int							m_iEvents;
+	int							m_iKillCount;
+	int							m_iPlayerUpdates;
+	int							m_iLoadoutChangesCount;
+
+private:
+	CUtlMap< CUtlConstString, int > m_MapsPlaytime;
+	char						m_szNextMap[32];
 };
 
 extern CTFGameStats CTF_GameStats;

@@ -232,6 +232,18 @@ enum CastVote
 	#define MAX_PLAYERS				33  // Absolute max players supported
 #endif
 
+// Josh: Accounts for code that may index this array by an entindex
+// of player rather than the player index... :s
+#define MAX_PLAYERS_ARRAY_SAFE		( MAX_PLAYERS + 1 )
+
+inline bool IsIndexIntoPlayerArrayValid(int iIndex)
+{
+	if (iIndex < 0 || iIndex >= MAX_PLAYERS_ARRAY_SAFE)
+		return false;
+
+	return true;
+}
+
 #define MAX_PLACE_NAME_LENGTH		18
 
 #define MIN_FOV						75

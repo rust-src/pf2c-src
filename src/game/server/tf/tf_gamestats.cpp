@@ -16,8 +16,9 @@
 #include "hl2orange.spa.h"
 
 // Must run with -gamestats to be able to turn on/off stats with ConVar below.
-static ConVar tf_stats_track( "tf_stats_track", "1", FCVAR_NONE, "Turn on//off tf stats tracking." );
-static ConVar tf_stats_verbose( "tf_stats_verbose", "0", FCVAR_NONE, "Turn on//off verbose logging of stats." );
+static ConVar tf_stats_nogameplaycheck("tf_stats_nogameplaycheck", "0", FCVAR_NONE, "Disable normal check for valid gameplay, send stats regardless.");
+//static ConVar tf_stats_track( "tf_stats_track", "1", FCVAR_NONE, "Turn on//off tf stats tracking." );
+//static ConVar tf_stats_verbose( "tf_stats_verbose", "0", FCVAR_NONE, "Turn on//off verbose logging of stats." );
 
 CTFGameStats CTF_GameStats;
 
@@ -43,7 +44,9 @@ const char *g_aClassNames[] =
 CTFGameStats::CTFGameStats()
 {
 	gamestats = this;
-	Clear();	
+	Clear();
+
+	SetDefLessFunc(m_MapsPlaytime);
 }
 
 //-----------------------------------------------------------------------------
@@ -179,6 +182,9 @@ void CTFGameStats::ResetPlayerStats( CTFPlayer *pPlayer )
 void CTFGameStats::ResetKillHistory( CTFPlayer *pPlayer )
 {
 	int iPlayerIndex = pPlayer->entindex();
+
+	if (!IsIndexIntoPlayerArrayValid(iPlayerIndex))
+		return;
 
 	// for every other player, set all all the kills with respect to this player to 0
 	for ( int i = 0; i < ARRAYSIZE( m_aPlayerStats ); i++ )
