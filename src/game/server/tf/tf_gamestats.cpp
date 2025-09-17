@@ -276,7 +276,7 @@ void CTFGameStats::SendStatsToPlayer( CTFPlayer *pPlayer, int iMsgType )
 
 	int iStat = TFSTAT_FIRST;
 	CSingleUserRecipientFilter filter( pPlayer );
-	filter.MakeReliable();
+	//filter.MakeReliable();
 	UserMessageBegin( filter, "PlayerStatsUpdate" );
 	WRITE_BYTE( pPlayer->GetPlayerClass()->GetClassIndex() );		// write the class
 	WRITE_BYTE( iMsgType );											// type of message
@@ -1024,6 +1024,9 @@ void CTFGameStats::TrackKillStats( CBasePlayer *pAttacker, CBasePlayer *pVictim 
 	int iPlayerIndexAttacker = pAttacker->entindex();
 	int iPlayerIndexVictim = pVictim->entindex();
 
+	if (!IsIndexIntoPlayerArrayValid(iPlayerIndexAttacker) || !IsIndexIntoPlayerArrayValid(iPlayerIndexVictim))
+		return;
+
 	PlayerStats_t &statsAttacker = m_aPlayerStats[iPlayerIndexAttacker];
 	PlayerStats_t &statsVictim = m_aPlayerStats[iPlayerIndexVictim];
 
@@ -1036,6 +1039,9 @@ void CTFGameStats::TrackKillStats( CBasePlayer *pAttacker, CBasePlayer *pVictim 
 
 struct PlayerStats_t *CTFGameStats::FindPlayerStats( CBasePlayer *pPlayer )
 {
+	if (!pPlayer)
+		return NULL;
+
 	return &m_aPlayerStats[pPlayer->entindex()];
 }
 
