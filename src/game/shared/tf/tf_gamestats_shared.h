@@ -240,8 +240,67 @@ public:
 	TF_Gamestats_WeaponStats_t		m_aWeaponStats[TF_WEAPON_COUNT];	// Vector of weapon data
 	// Temporary data.
 	bool							m_bInitialized;		// Has the map Map Stat Data been initialized.
+	time_t							m_iMapStartTime;
+	time_t							m_iRoundStartTime; // time_t version for steamworks stats
 	float							m_flRoundStartTime;
 	int								m_iPeakPlayerCount[TF_TEAM_COUNT];
+};
+
+struct TF_Gamestats_RoundStats_t
+{
+public:
+
+	TF_Gamestats_RoundStats_t();
+	~TF_Gamestats_RoundStats_t();
+
+private:
+	TF_Gamestats_RoundStats_t(const TF_Gamestats_RoundStats_t& stats) {}
+
+public:
+	void Reset();
+	void ResetSummary();
+
+	struct RoundSummary_t
+	{
+		int iTeamQuit;
+		int iPoints;
+		int iBonusPoints;
+		int iKills;
+		int iDeaths;
+		int	iSuicides;
+		int	iAssists;
+		int	iBuildingsBuilt;
+		int	iBuildingsDestroyed;
+		int	iHeadshots;
+		int	iDominations;
+		int	iRevenges;
+		int	iInvulns;
+		int	iTeleports;
+		int	iDamageDone;
+		int	iHealingDone;
+		int	iCrits;
+		int	iBackstabs;
+		int iThrowableHits;
+		int iThrowableKills;
+	};
+
+	RoundSummary_t				m_Summary;
+
+	static time_t				m_iRoundStartTime;
+	static int					m_iNumRounds;
+};
+
+struct TF_Gamestats_KillStats_t
+{
+public:
+	TF_Gamestats_KillStats_t();
+	~TF_Gamestats_KillStats_t();
+
+private:
+	TF_Gamestats_KillStats_t(const TF_Gamestats_KillStats_t& stats) {}
+
+public:
+	void Reset();
 };
 
 struct KillStats_t
@@ -309,7 +368,8 @@ struct TFReportedStats_t
 	bool LoadCustomDataFromBuffer( CUtlBuffer &LoadBuffer );
 #endif 
 
-	TF_Gamestats_LevelStats_t								*m_pCurrentGame;
+	bool													m_bValidData;
+	TF_Gamestats_LevelStats_t* m_pCurrentGame;
 	CUtlDict<TF_Gamestats_LevelStats_t, unsigned short>		m_dictMapStats;
 };
 

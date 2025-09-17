@@ -824,9 +824,9 @@ void CTFGameStats::Event_PlayerDefendedPoint( CTFPlayer *pPlayer )
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
-void CTFGameStats::Event_PlayerDominatedOther( CTFPlayer *pAttacker )
+void CTFGameStats::Event_PlayerDominatedOther(CTFPlayer* pAttacker)
 {
-	IncrementStat( pAttacker, TFSTAT_DOMINATIONS, 1 );
+	IncrementStat(pAttacker, TFSTAT_DOMINATIONS, 1);
 }
 
 //-----------------------------------------------------------------------------

@@ -84,7 +84,9 @@ public:
 	bool ShouldSendToClient( TFStatType_t statType );
 
 	// Utilities.
-	TF_Gamestats_LevelStats_t	*GetCurrentMap( void )			{ return m_reportedStats.m_pCurrentGame; }
+	TF_Gamestats_LevelStats_t* GetCurrentMap(void) { return m_reportedStats.m_pCurrentGame; }
+	TF_Gamestats_RoundStats_t* GetRoundStatsForTeam(int iTeamNumber);
+	void StoreGameEndReason(const char* reason);
 
 	struct PlayerStats_t *		FindPlayerStats( CBasePlayer *pPlayer );
 	void						ResetPlayerStats( CTFPlayer *pPlayer );

@@ -20,7 +20,8 @@
 TF_Gamestats_LevelStats_t::TF_Gamestats_LevelStats_t()
 {
 	m_bInitialized = false;
-	m_flRoundStartTime = 0.0f;	
+	m_iRoundStartTime = 0;
+	m_flRoundStartTime = 0;
 	m_Header.m_iRoundsPlayed = 0;
 	m_Header.m_iTotalTime = 0;
 	m_Header.m_iBlueWins = 0;
@@ -88,6 +89,7 @@ void TF_Gamestats_LevelStats_t::Shutdown( float flEndTime )
 TFReportedStats_t::TFReportedStats_t()
 {
 	Clear();
+	m_bValidData = false;
 	m_pCurrentGame = NULL;
 }
 
