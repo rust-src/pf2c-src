@@ -1,5 +1,8 @@
 # Files to ignore when considering what GIT should commit.
 
+# Build files PF2
+**/Release_pf2beta/
+
 # Visual Studio
 *.suo
 *.user
