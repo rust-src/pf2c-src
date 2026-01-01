@@ -33,7 +33,7 @@
 
 ConVar cl_richpresence_printmsg("cl_richpresence_printmsg", "0", FCVAR_ARCHIVE, "");
 
-#define DISCORD_APP_ID	"658004706337226791"
+#define DISCORD_APP_ID	"1431733011052761250"
 
 // update once every 10 seconds. discord has an internal rate limiter of 15 seconds as well
 #define DISCORD_UPDATE_RATE 10.0f
@@ -167,8 +167,6 @@ void CTFDiscordRPC::OnReady(const DiscordUser* user)
     
 	str = asctime(gmtime(&t));
 
-	//Fuck ctime for adding a \n at the fucking end you fucking piece of shit
-	//-Nbc66
 	str.erase(std::remove(str.begin(), str.end(), '\n'), str.end());
 
 	ConColorMsg(Color(114, 137, 218, 255), "[Rich Presence] Ready!\n");
@@ -176,7 +174,7 @@ void CTFDiscordRPC::OnReady(const DiscordUser* user)
 
 	//Yup this is literaly usless but hey it's a novelty lol
 	//-Nbc66
-	ConColorMsg(Color( 0, 255, 30, 255), "This build was compiled on %s UTC\n", str);
+	ConColorMsg(Color(0, 255, 30, 255), "This build was compiled on %s %s\n", __DATE__, __TIME__, str);
 
 	g_discordrpc.Reset();
 }

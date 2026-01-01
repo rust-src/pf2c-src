@@ -61,6 +61,9 @@ bool		bRed2Black = true;
 bool		g_bFastAmbient = false;
 bool        g_bNoSkyRecurse = false;
 bool		g_bDumpPropLightmaps = false;
+bool		g_bNoAO = false; // Variable for Flag that disables AO when it sets this var to true
+bool		g_bNoSoften = false; // Variable for Flag that makes sure AO doesnt soften when it sets this var to true
+int			g_bAOSamples = 32;
 
 
 int			junk;
@@ -94,7 +97,7 @@ bool g_bOnlyStaticProps = false;
 bool g_bShowStaticPropNormals = false;
 
 
-float		gamma_value = 0.5;
+float		gamma = 0.5;
 float		indirect_sun = 1.0;
 float		reflectivityScale = 1.0;
 qboolean	do_extra = true;
@@ -119,6 +122,8 @@ bool		g_bStaticPropLighting = false;
 bool        g_bStaticPropPolys = false;
 bool        g_bTextureShadows = false;
 bool        g_bDisablePropSelfShadowing = false;
+
+int			g_nIndirectPropLightingMode = 0;
 
 
 CUtlVector<byte> g_FacesVisibleToLights;
@@ -2020,12 +2025,14 @@ bool RadWorld_Go()
 	}
 
 	// build initial facelights
+#ifdef MPI
 	if (g_bUseMPI) 
 	{
 		// RunThreadsOnIndividual (numfaces, true, BuildFacelights);
 		RunMPIBuildFacelights();
 	}
 	else 
+#endif
 	{
 		RunThreadsOnIndividual (numfaces, true, BuildFacelights);
 	}
@@ -2079,13 +2086,19 @@ bool RadWorld_Go()
 		StaticDispMgr()->InsertPatchSampleDataIntoHashTable();
 		StaticDispMgr()->EndTimer();
 
+#ifdef MPI
 		// blend bounced light into direct light and save
 		VMPI_SetCurrentStage( "FinalLightFace" );
 		if ( !g_bUseMPI || g_bMPIMaster )
+#endif
+		{
 			RunThreadsOnIndividual (numfaces, true, FinalLightFace);
+		}
 		
 		// Distribute the lighting data to workers.
+#ifdef MPI
 		VMPI_DistributeLightData();
+#endif
 			
 		Msg("FinalLightFace Done\n"); fflush(stdout);
 	}
@@ -2143,7 +2156,9 @@ void VRAD_LoadBSP( char const *pFilename )
 	// so we prepend qdir here.
 	strcpy( source, ExpandPath( source ) );
 
+#ifdef MPI
 	if ( !g_bUseMPI )
+#endif
 	{
 		// Setup the logfile.
 		char logFile[512];
@@ -2181,10 +2196,13 @@ void VRAD_LoadBSP( char const *pFilename )
 	Q_DefaultExtension(source, ".bsp", sizeof( source ));
 
 	Msg( "Loading %s\n", source );
+#ifdef MPI
 	VMPI_SetCurrentStage( "LoadBSPFile" );
+#endif
 	LoadBSPFile (source);
 
 	// Add this bsp to our search path so embedded resources can be found
+#ifdef MPI
 	if ( g_bUseMPI && g_bMPIMaster )
 	{
 		// MPI Master, MPI workers don't need to do anything
@@ -2192,6 +2210,7 @@ void VRAD_LoadBSP( char const *pFilename )
 		g_pOriginalPassThruFileSystem->AddSearchPath(source, "MOD", PATH_ADD_TO_HEAD);
 	}
 	else if ( !g_bUseMPI )
+#endif
 	{
 		// Non-MPI
 		g_pFullFileSystem->AddSearchPath(source, "GAME", PATH_ADD_TO_HEAD);
@@ -2323,7 +2342,9 @@ void VRAD_Finish()
 	}
 
 	Msg( "Writing %s\n", source );
+#ifdef MPI
 	VMPI_SetCurrentStage( "WriteBSPFile" );
+#endif
 	WriteBSPFile(source);
 
 	if ( g_bDumpPatches )
@@ -2376,6 +2397,26 @@ int ParseCommandLine( int argc, char **argv, bool *onlydetail )
 		{
 			g_bStaticPropLighting = true;
 		}
+		else if (!stricmp(argv[i], "-NoAO"))
+		{
+			g_bNoAO = true;
+		}
+		else if (!Q_stricmp(argv[i], "-AOSamples"))
+		{
+			if (isdigit(i))
+			{
+				g_bAOSamples = atoi(argv[i]);
+			}
+			else
+			{
+				Warning("Error: expected a value after '-AOSamples'\n");
+				return -1;
+			}
+		}
+		else if (!stricmp(argv[i], "-NoSoftAO"))
+		{
+			g_bNoSoften = true;
+		}
 		else if ( !stricmp( argv[i], "-StaticPropNormals" ) )
 		{
 			g_bShowStaticPropNormals = true;
@@ -2391,6 +2432,18 @@ int ParseCommandLine( int argc, char **argv, bool *onlydetail )
 		else if ( !Q_stricmp( argv[i], "-nossprops" ) )
 		{
 			g_bDisablePropSelfShadowing = true;
+		}
+		else if ( !Q_stricmp( argv[i], "-StaticPropIndirectMode" ) )
+		{
+			if ( ++i < argc )
+			{
+				g_nIndirectPropLightingMode = atoi( argv[i] );
+			}
+			else
+			{
+				Warning( "Error: expected a value after '-StaticPropIndirectMode'\n" );
+				return -1;
+			}
 		}
 		else if ( !Q_stricmp( argv[i], "-textureshadows" ) )
 		{
@@ -2751,6 +2804,7 @@ int ParseCommandLine( int argc, char **argv, bool *onlydetail )
 			}
 		}
 #endif
+#ifdef MPI
 		// NOTE: the -mpi checks must come last here because they allow the previous argument 
 		// to be -mpi as well. If it game before something else like -game, then if the previous
 		// argument was -mpi and the current argument was something valid like -game, it would skip it.
@@ -2763,6 +2817,7 @@ int ParseCommandLine( int argc, char **argv, bool *onlydetail )
 			if ( i == argc - 1 && V_stricmp( argv[i], "-mpi_ListParams" ) != 0 )
 				break;
 		}
+#endif
 		else if ( mapArg == -1 )
 		{
 			mapArg = i;
@@ -2787,7 +2842,6 @@ void PrintCommandLine( int argc, char **argv )
 	Warning( "\n\n" );
 }
 
-
 void PrintUsage( int argc, char **argv )
 {
 	PrintCommandLine( argc, argv );
@@ -2805,7 +2859,9 @@ void PrintUsage( int argc, char **argv )
 		"  -final          : High quality processing. equivalent to -extrasky 16.\n"
 		"  -extrasky n     : trace N times as many rays for indirect light and sky ambient.\n"
 		"  -low            : Run as an idle-priority process.\n"
+#ifdef MPI
 		"  -mpi            : Use VMPI to distribute computations.\n"
+#endif
 		"  -rederror       : Show errors in red.\n"
 		"\n"
 		"  -vproject <directory> : Override the VPROJECT environment variable.\n"
@@ -2828,7 +2884,9 @@ void PrintUsage( int argc, char **argv )
 		"  -dlightmap      : Force direct lighting into different lightmap than\n"
 		"                    radiosity.\n"
 		"  -stoponexit	   : Wait for a keypress on exit.\n"
+#ifdef MPI
 		"  -mpi_pw <pw>    : Use a password to choose a specific set of VMPI workers.\n"
+#endif
 		"  -nodetaillight  : Don't light detail props.\n"
 		"  -centersamples  : Move sample centers.\n"
 		"  -luxeldensity # : Rescale all luxels by the specified amount (default: 1.0).\n"
@@ -2849,12 +2907,16 @@ void PrintUsage( int argc, char **argv )
 		"                          light across a wider area.\n"
         "  -StaticPropLighting   : generate backed static prop vertex lighting\n"
         "  -StaticPropPolys   : Perform shadow tests of static props at polygon precision\n"
+		"  -StaticPropIndirectMode : Override prop indirect lighting algorithm (0 - default, 1 - TF2, 2 - Orangebox)\n"
         "  -OnlyStaticProps   : Only perform direct static prop lighting (vrad debug option)\n"
 		"  -StaticPropNormals : when lighting static props, just show their normal vector\n"
 		"  -textureshadows : Allows texture alpha channels to block light - rays intersecting alpha surfaces will sample the texture\n"
 		"  -noskyboxrecurse : Turn off recursion into 3d skybox (skybox shadows on world)\n"
 		"  -nossprops      : Globally disable self-shadowing on static props\n"
 		"\n"
+		"  -NoAO : Disable Baking Ambient Occlusion\n"
+		"  -NoSoftAO : Give Occluded surfaces a harsher linear N.L look instead of a softer look\n"
+		"  -AOSamples <n> : Specify the Ambient Occlusion sample count (default: 32)\n"
 #if 1 // Disabled for the initial SDK release with VMPI so we can get feedback from selected users.
 		);
 #else
@@ -2922,7 +2984,9 @@ int RunVRAD( int argc, char **argv )
 
 	VRAD_Finish();
 
+#ifdef MPI
 	VMPI_SetCurrentStage( "master done" );
+#endif
 
 	DeleteCmdLine( argc, argv );
 	CmdLib_Cleanup();
@@ -2937,14 +3001,18 @@ int VRAD_Main(int argc, char **argv)
 	VRAD_Init();
 
 	// This must come first.
+#ifdef MPI
 	VRAD_SetupMPI( argc, argv );
+#endif
 
+#ifdef MPI
 #if !defined( _DEBUG )
 	if ( g_bUseMPI && !g_bMPIMaster )
 	{
 		SetupToolsMinidumpHandler( VMPI_ExceptionFilter );
 	}
 	else
+#endif
 #endif
 	{
 		LoadCmdLineFromFile( argc, argv, source, "vrad" ); // Don't do this if we're a VMPI worker..

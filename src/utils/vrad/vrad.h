@@ -290,6 +290,7 @@ extern bool g_bStaticPropPolys;
 extern bool g_bTextureShadows;
 extern bool g_bShowStaticPropNormals;
 extern bool g_bDisablePropSelfShadowing;
+extern int g_nIndirectPropLightingMode;
 
 extern CUtlVector<char const *> g_NonShadowCastingMaterialStrings;
 extern void ForceTextureShadowsOnModel( const char *pModelName );
@@ -337,7 +338,7 @@ extern dface_t *g_pFaces;
 extern bool g_bMPIProps;
 
 extern	byte	nodehit[MAX_MAP_NODES];
-extern  float	gamma_value;
+extern  float	gamma;
 extern	float	indirect_sun;
 extern	float	smoothing_threshold;
 extern	int		dlight_map;
@@ -385,6 +386,7 @@ inline byte PVSCheck( const byte *pvs, int iCluster )
 
 // outputs 1 in fractionVisible if no occlusion, 0 if full occlusion, and in-between values
 void TestLine( FourVectors const& start, FourVectors const& stop, fltx4 *pFractionVisible, int static_prop_index_to_ignore=-1);
+void TestLine_IgnoreSky( FourVectors const& start, FourVectors const& stop, fltx4 *pFractionVisible, int static_prop_index_to_ignore=-1);
 
 // returns 1 if the ray sees the sky, 0 if it doesn't, and in-between values for partial coverage
 void TestLine_DoesHitSky( FourVectors const& start, FourVectors const& stop,
