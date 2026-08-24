@@ -20,7 +20,7 @@ $Configuration
 	$Compiler
 	{
 		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\game\shared\hl2;.\tf;.\tf\bot;.\tf\vgui;$SRCDIR\game\shared\Multiplayer;$SRCDIR\game\shared\tf;$SRCDIR\game\shared\pf"
-		$PreprocessorDefinitions		"$BASE;PF2;PF2_DLL;GLOWS_ENABLE;NEXT_BOT"
+		$PreprocessorDefinitions		"$BASE;PF2;PF2_DLL;GLOWS_ENABLE;TF_MOD;NEXT_BOT"
 	}
 }
 
