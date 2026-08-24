@@ -907,6 +907,8 @@ void CTFPlayer::Spawn()
 
 	CTF_GameStats.Event_PlayerSpawned( this );
 
+	m_lastCalledMedic.Invalidate();
+
 	m_iSpawnCounter = !m_iSpawnCounter;
 	m_bAllowInstantSpawn = false;
 
@@ -1832,7 +1834,7 @@ void CTFPlayer::HandleCommand_JoinClass( const char *pClassName )
 		bShouldNotRespawn = true;
 	}
 
-	if( stricmp( pClassName, "random" ) != 0 )
+	if( stricmp( pClassName, "random" ) != 0 && stricmp(pClassName, "auto") != 0 )
 	{
 		int i = 0;
 
@@ -2401,6 +2403,23 @@ void CTFPlayer::SetClassMenuOpen( bool bOpen )
 bool CTFPlayer::IsClassMenuOpen( void )
 {
 	return m_bIsClassMenuOpen;
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: Get a specific buildable that this player owns
+//-----------------------------------------------------------------------------
+CBaseObject* CTFPlayer::GetObjectOfType(int iObjectType)
+{
+	int i;
+
+	for (i = GetObjectCount(); --i >= 0; )
+	{
+		CBaseObject* obj = GetObject(i);
+		if (obj->ObjectType() == iObjectType)
+			return obj;
+	}
+
+	return NULL;
 }
 
 //-----------------------------------------------------------------------------

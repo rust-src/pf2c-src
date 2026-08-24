@@ -70,6 +70,8 @@ public:
 	int			GetPointIndex( void ) { return m_iPointIndex; }
 	void		SetPointIndex( int index ) { m_iPointIndex = index; }
 
+	int			GetPointTeam(void) { return m_iTeam; }
+
 	int			GetWarnOnCap( void ) { return m_iWarnOnCap; }
 	string_t	GetWarnSound( void ) { return m_iszWarnSound; }
 

@@ -62,6 +62,9 @@ public:
 	virtual float GetChargeBeginTime( void ) { return m_flChargeBeginTime; }
 	virtual float GetChargeMaxTime( void );
 	int	GetPipeBombCount( void ) { return m_iPipebombCount; }
+	// List of active pipebombs
+	typedef CHandle<CTFGrenadePipebombProjectile>	PipebombHandle;
+	CUtlVector<PipebombHandle>		m_Pipebombs;
 
 	void LaunchGrenade( void );
 	bool DetonateRemotePipebombs( bool bFizzle );
@@ -84,10 +87,6 @@ private:
 #ifdef CLIENT_DLL
 	int				m_iPipebombCount;
 #endif
-
-	// List of active pipebombs
-	typedef CHandle<CTFGrenadePipebombProjectile>	PipebombHandle;
-	CUtlVector<PipebombHandle>		m_Pipebombs;
 
 	float	m_flChargeBeginTime;
 	float	m_flLastDenySoundTime;
