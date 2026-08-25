@@ -54,6 +54,9 @@ public:
 	// Engineer hit me with a wrench
 	virtual bool	OnWrenchHit( CTFPlayer *pPlayer );
 
+	const QAngle& GetTurretAngles(void) const { return m_vecCurAngles; }
+	float GetTimeSinceLastFired(void) const;
+
 	virtual void	OnStartDisabled( void );
 	virtual void	OnEndDisabled( void );
 
@@ -63,6 +66,8 @@ public:
 	virtual bool	IsUpgrading( void ) const;
 
 	int				GetUpgradeLevel( void ) { return m_iUpgradeLevel; }
+
+	bool ValidTargetBot(CBaseCombatCharacter* pActor);
 
 private:
 
@@ -143,6 +148,8 @@ private:
 	float m_flFragResist;
 
 	int m_iPlacementBodygroup;
+
+	IntervalTimer m_fireTimer;
 
 	DECLARE_DATADESC();
 };

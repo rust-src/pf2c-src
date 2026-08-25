@@ -163,6 +163,10 @@ Activity CTFWeaponBuilder::GetDrawActivity( void )
 //-----------------------------------------------------------------------------
 bool CTFWeaponBuilder::Holster( CBaseCombatWeapon *pSwitchingTo )
 {
+	CTFPlayer* pOwner = ToTFPlayer(GetOwner());
+	if (!pOwner)
+		return false;
+
 	if ( m_iBuildState == BS_PLACING || m_iBuildState == BS_PLACING_INVALID )
 	{
 		SetCurrentState( BS_IDLE );
@@ -266,7 +270,15 @@ void CTFWeaponBuilder::PrimaryAttack( void )
 					pOwner->DoAnimationEvent( PLAYERANIMEVENT_ATTACK_GRENADE );
 				}
 
+				// Need to save this for later since StartBuilding will clear m_hObjectBeingBuilt.
+				CBaseObject* pParentObject = m_hObjectBeingBuilt->GetParentObject();
+
 				StartBuilding();
+
+				if (GetType() == OBJ_ATTACHMENT_SAPPER)
+				{
+					pOwner->OnSapperPlaced(pParentObject);
+				}
 
 				// Should we switch away?
 				if ( iFlags & OF_ALLOW_REPEAT_PLACEMENT )

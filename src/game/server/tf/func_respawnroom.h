@@ -14,12 +14,21 @@
 
 class CFuncRespawnRoomVisualizer;
 
+class CFuncRespawnRoomShim : public CBaseTrigger
+{
+	virtual void RespawnRoomTouch(CBaseEntity* pOther) = 0;
+
+public:
+	void Touch(CBaseEntity* pOther) { return RespawnRoomTouch(pOther); }
+};
+
 //-----------------------------------------------------------------------------
 // Purpose: Defines an area considered inside a respawn room
 //-----------------------------------------------------------------------------
-class CFuncRespawnRoom : public CBaseTrigger
+DECLARE_AUTO_LIST(IFuncRespawnRoomAutoList)
+class CFuncRespawnRoom : public CFuncRespawnRoomShim, public IFuncRespawnRoomAutoList
 {
-	DECLARE_CLASS( CFuncRespawnRoom, CBaseTrigger );
+	DECLARE_CLASS( CFuncRespawnRoom, CFuncRespawnRoomShim );
 
 public:
 

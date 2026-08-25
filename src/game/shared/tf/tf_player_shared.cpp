@@ -1948,6 +1948,17 @@ void CTFPlayerShared::SetInvulnerable( bool bState, bool bInstant )
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
+EHANDLE	CTFPlayerShared::GetHealerByIndex(int index)
+{
+	if (m_aHealers.IsValidIndex(index))
+		return m_aHealers[index].pPlayer;
+
+	return NULL;
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: 
+//-----------------------------------------------------------------------------
 int	CTFPlayerShared::FindHealerIndex( CTFPlayer *pPlayer )
 {
 	for ( int i = 0; i < m_aHealers.Count(); i++ )
@@ -1969,6 +1980,17 @@ EHANDLE CTFPlayerShared::GetFirstHealer()
 		return m_aHealers.Head().pPlayer;
 
 	return NULL;
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: 
+//-----------------------------------------------------------------------------
+bool CTFPlayerShared::HealerIsDispenser(int index) const
+{
+	if (!m_aHealers.IsValidIndex(index))
+		return false;
+
+	return m_aHealers[index].bDispenserHeal;
 }
 #endif
 
@@ -2527,6 +2549,11 @@ void CTFPlayer::TeamFortress_SetSpeed()
 				maxfbspeed *= 0.9f;
 			}
 		}
+	}
+
+	if (IsBot())
+	{
+		maxfbspeed *= 0.5f;
 	}
 
 	// Set the speed

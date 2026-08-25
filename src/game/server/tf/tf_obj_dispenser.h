@@ -50,6 +50,7 @@ public:
 	virtual int	ObjectCaps( void ) { return (BaseClass::ObjectCaps() | FCAP_IMPULSE_USE); }
 
 	bool DispenseAmmo( CTFPlayer *pPlayer );
+	virtual int GetAvailableMetal(void) const { return m_iAmmoMetal; }
 
 	void StartHealing( CBaseEntity *pOther );
 	void StopHealing( CBaseEntity *pOther );

@@ -689,6 +689,10 @@ enum
 #define SENTRYGUN_MAX_SHELLS_2			120
 #define SENTRYGUN_MAX_SHELLS_3			144
 #define SENTRYGUN_MAX_ROCKETS			20
+#define SENTRYGUN_BASE_RANGE			1100.0f
+#define TF_PIPEBOMB_MIN_CHARGE_VEL						900
+#define TF_PIPEBOMB_MAX_CHARGE_VEL						2400
+#define TF_PIPEBOMB_MAX_CHARGE_TIME						4.0f
 
 // Dispenser's maximum carrying capability
 #define DISPENSER_MAX_METAL_AMMO		400
