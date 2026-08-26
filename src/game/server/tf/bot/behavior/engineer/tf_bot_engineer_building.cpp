@@ -11,6 +11,7 @@
 #include "tf_bot_engineer_build_teleport_exit.h"
 #include "tf_bot_engineer_move_to_build.h"
 #include "tf_obj_sentrygun.h"
+#include "../tf_bot_get_ammo.h"
 #include <NextBot\NextBotUtil.h>
 
 
@@ -39,6 +40,7 @@ ActionResult<CTFBot> CTFBotEngineerBuilding::OnStart( CTFBot *me, Action<CTFBot>
 {
 	m_iTries = 5;
 	m_outOfPositionTimer.Invalidate();
+	m_fetchAmmoTimer.Invalidate();
 	m_bHadASentry = false;
 	m_bIsOutOfPosition = false;
 	m_iMetalSource = UNKNOWN;
@@ -124,6 +126,15 @@ ActionResult<CTFBot> CTFBotEngineerBuilding::Update( CTFBot *me, float dt )
 	{
 		if ( m_iMetalSource == UNKNOWN )
 			m_iMetalSource = IsMetalSourceNearby( me ) ? AVAILABLE : UNAVAILABLE;
+
+		// If we're low on metal but there's a metal source nearby, go get metal
+		if ( m_iMetalSource == AVAILABLE && me->IsAmmoLow() )
+		{
+			if (m_fetchAmmoTimer.IsElapsed() && CTFBotGetAmmo::IsPossible(me))
+			{
+				return Action<CTFBot>::SuspendFor( new CTFBotGetAmmo, "Need more metal to upgrade" );
+			}
+		}
 
 		if ( m_iMetalSource == AVAILABLE )
 		{

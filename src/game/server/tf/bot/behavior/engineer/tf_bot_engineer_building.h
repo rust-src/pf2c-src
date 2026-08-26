@@ -42,6 +42,7 @@ private:
 	CountdownTimer m_recomputePathTimer;
 	CountdownTimer m_buildDispenserTimer;
 	CountdownTimer m_buildTeleportTimer;
+	CountdownTimer m_fetchAmmoTimer;
 	PathFollower m_PathFollower;
 	CHandle<CTFBotHintSentrygun> m_hHint;
 	bool m_bHadASentry;

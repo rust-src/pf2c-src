@@ -407,6 +407,7 @@ ActionResult<CTFBot> CTFBotMedicHeal::Update( CTFBot *me, float interval )
 			{
 				if ( !m_delayUberTimer.HasStarted() )
 				{
+					//m_delayUberTimer.Start( me->GetUberDeployDelayDuration() );
 					m_delayUberTimer.Start( 0.1 );
 				}
 

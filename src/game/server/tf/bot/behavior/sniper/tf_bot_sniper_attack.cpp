@@ -65,6 +65,10 @@ ActionResult<CTFBot> CTFBotSniperAttack::Update( CTFBot *me, float dt )
 	{
 		me->PressAltFireButton();
 	}
+	else
+	{
+		me->PressFireButton();
+	}
 
 	return Action<CTFBot>::Continue();
 }
