@@ -1,4 +1,4 @@
-//========= Copyright © Valve LLC, All rights reserved. =======================
+//========= Copyright ï¿½ Valve LLC, All rights reserved. =======================
 //
 // Purpose:		
 //
@@ -235,6 +235,8 @@ public:
 
 	float			MedicGetChargeLevel(void);
 	CBaseEntity*	MedicGetHealTarget(void);
+	int				GetUberHealthThreshold();
+	float			GetUberDeployDelayDuration();
 
 	const Vector& EstimateProjectileImpactPosition(CTFWeaponBaseGun* weapon);
 	const Vector& EstimateProjectileImpactPosition(float pitch, float yaw, float speed);
